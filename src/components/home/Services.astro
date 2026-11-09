@@ -1,0 +1,62 @@
+---
+/**
+ * Services overview. Featured services (CCTV and alarms) get full rows;
+ * the rest sit in a compact list underneath, so the two main services lead.
+ * Content comes from src/content/services/.
+ */
+import { getCollection } from 'astro:content';
+import { ctaLabel } from '../../config/site';
+
+const all = (await getCollection('services')).sort((a, b) => a.data.order - b.data.order);
+const featured = all.filter((s) => s.data.featured);
+const others = all.filter((s) => !s.data.featured);
+---
+<section aria-labelledby="services-title" class="py-section">
+  <div class="wrap grid gap-10 lg:grid-cols-12 lg:gap-10">
+    <div class="lg:col-span-4">
+      <h2 id="services-title" class="text-3xl tracking-display">What we install</h2>
+      <p class="mt-5 max-w-sm text-muted">
+        Systems chosen for your home rather than sold from a package list. Every installation starts with a free survey.
+      </p>
+      <p class="mt-6">
+        <a href="#quote" class="link font-semibold">Not sure what you need? {ctaLabel}</a>
+      </p>
+    </div>
+
+    <div class="lg:col-span-8">
+      <ul>
+        {featured.map((s) => (
+          <li class="grid gap-3 border-t-2 border-navy py-8 sm:grid-cols-[minmax(0,15rem)_1fr] sm:gap-10">
+            <h3 class="text-2xl tracking-display">
+              <a href={`/services/${s.id}/`} class="hover:text-teal-ink hover:underline hover:decoration-2 hover:underline-offset-4">
+                {s.data.title}
+              </a>
+            </h3>
+            <div>
+              <p class="text-lg">{s.data.summary}</p>
+              <p class="mt-4">
+                <a href={`/services/${s.id}/`} class="link font-semibold">
+                  How we install {s.data.shortTitle === 'CCTV' ? 'CCTV' : s.data.shortTitle.toLowerCase()}
+                </a>
+              </p>
+            </div>
+          </li>
+        ))}
+      </ul>
+
+      {others.length > 0 && (
+        <div class="border-t-2 border-navy pt-8">
+          <h3 class="text-lg">Also available</h3>
+          <ul class="mt-4 grid gap-x-8 gap-y-6 sm:grid-cols-3">
+            {others.map((s) => (
+              <li>
+                <a href={`/services/${s.id}/`} class="link font-semibold">{s.data.shortTitle}</a>
+                <p class="mt-1 text-sm text-muted">{s.data.summary}</p>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+    </div>
+  </div>
+</section>

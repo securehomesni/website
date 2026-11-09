@@ -1,0 +1,35 @@
+---
+/**
+ * Small inline icons. Decorative by default (aria-hidden); text beside them carries the meaning.
+ * Sized in em so they match the surrounding text.
+ */
+interface Props {
+  name: 'phone' | 'check' | 'mail' | 'clock' | 'pin' | 'external' | 'alert';
+  class?: string;
+}
+const { name, class: className = '' } = Astro.props;
+const paths: Record<Props['name'], string> = {
+  phone:
+    'M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1l-2.3 2.2Z',
+  check: 'M5 12.5 9.5 17 19 7.5',
+  mail: 'M3.5 6.5h17v11h-17zM3.5 7l8.5 6.5L20.5 7',
+  clock: 'M12 3.5a8.5 8.5 0 1 1 0 17 8.5 8.5 0 0 1 0-17ZM12 7.5V12l3 2',
+  pin: 'M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11ZM12 12.25a2.25 2.25 0 1 0 0-4.5 2.25 2.25 0 0 0 0 4.5Z',
+  external: 'M14 4.5h5.5V10M19.5 4.5 11 13M17 14v5.5H4.5V7H10',
+  alert: 'M12 3.5a8.5 8.5 0 1 1 0 17 8.5 8.5 0 0 1 0-17ZM12 7.5v5.5M12 16.2v.3',
+};
+const filled = name === 'phone';
+---
+<svg
+  class={`inline-block size-[1.1em] shrink-0 ${className}`}
+  viewBox="0 0 24 24"
+  aria-hidden="true"
+  focusable="false"
+  fill={filled ? 'currentColor' : 'none'}
+  stroke={filled ? 'none' : 'currentColor'}
+  stroke-width="1.75"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d={paths[name]} />
+</svg>

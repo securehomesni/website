@@ -1,0 +1,40 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import { breadcrumbSchema } from '../../lib/schema';
+
+const guides = (await getCollection('guides')).sort((a, b) => b.data.published.valueOf() - a.data.published.valueOf());
+const crumbs = [
+  { name: 'Home', path: '/' },
+  { name: 'Guides', path: '/guides/' },
+];
+const siteUrl = Astro.site ?? new URL(Astro.url.origin);
+const fmt = new Intl.DateTimeFormat('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+---
+<BaseLayout
+  title="Home Security Guides and Advice"
+  description="Plain-English guides to home CCTV, intruder alarms and the law in Northern Ireland, from local SSAIB-registered installers."
+  schema={[breadcrumbSchema(crumbs, siteUrl)]}
+>
+  <PageHeader
+    title="Guides and advice"
+    intro="Straightforward answers to the questions we’re asked most on surveys."
+    breadcrumbs={crumbs}
+  />
+  <div class="wrap py-section">
+    <ul class="max-w-3xl">
+      {guides.map((g) => (
+        <li class="border-t border-line py-8 first:border-t-2 first:border-navy">
+          <h2 class="text-2xl tracking-display">
+            <a class="hover:text-teal-ink hover:underline" href={`/guides/${g.id}/`}>{g.data.title}</a>
+          </h2>
+          <p class="mt-3 text-lg">{g.data.description}</p>
+          <p class="mt-3 text-sm text-muted">
+            Published <time datetime={g.data.published.toISOString()}>{fmt.format(g.data.published)}</time>
+          </p>
+        </li>
+      ))}
+    </ul>
+  </div>
+</BaseLayout>

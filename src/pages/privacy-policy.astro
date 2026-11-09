@@ -1,0 +1,83 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHeader from '../components/PageHeader.astro';
+import { site } from '../config/site';
+
+const updated = '9 November 2026'; // PLACEHOLDER: update whenever the policy changes
+---
+<BaseLayout
+  title="Privacy Policy"
+  description={`How ${site.name} collects, uses and protects your personal information under UK GDPR.`}
+>
+  <PageHeader title="Privacy policy" intro={`Last updated ${updated}.`} breadcrumbs={[{ name: 'Home', path: '/' }, { name: 'Privacy policy', path: '/privacy-policy/' }]} />
+  <div class="wrap py-section">
+    <!-- PLACEHOLDER: this is a starting draft. Have it checked before launch,
+         and make sure it matches what you actually do with enquiry data. -->
+    <div class="prose-content">
+      <h2>Who we are</h2>
+      <p>
+        {site.legalName} (“we”) is the data controller for personal information collected through this website.
+        We’re registered in Northern Ireland, company number {site.companyNumber}.
+        <!-- PLACEHOLDER: add your ICO registration number if you have one -->
+        You can contact us about privacy at <a href={`mailto:${site.email}`}>{site.email}</a> or on {site.phone.display}.
+      </p>
+
+      <h2>What we collect</h2>
+      <p>When you fill in our survey request form, we collect:</p>
+      <ul>
+        <li>your name, phone number, email address and postcode</li>
+        <li>the services you’re interested in, and anything you choose to tell us in the message box</li>
+      </ul>
+      <p>
+        When you visit the site, our hosting provider and our analytics service process technical information such as your IP address
+        and browser type. Our analytics don’t use cookies and don’t identify you personally.
+      </p>
+
+      <h2>How we use it and why</h2>
+      <ul>
+        <li><strong>To arrange your survey and send your quote.</strong> We do this because you’ve asked us to, as a step before entering into a contract with you.</li>
+        <li><strong>To keep records of the work we do</strong>, as required for our SSAIB registration, insurance and tax. This is a legal obligation or our legitimate interest.</li>
+        <li><strong>To protect the website from spam and abuse.</strong> This is our legitimate interest.</li>
+      </ul>
+      <p>We never sell your information, and we won’t send you marketing unless you’ve asked us to.</p>
+
+      <h2>Who we share it with</h2>
+      <p>We use a small number of service providers who process information on our behalf:</p>
+      <ul>
+        <li><strong>Cloudflare</strong>, which hosts this website, provides privacy-friendly analytics, and runs Turnstile, the check that stops spam on our form.</li>
+        <li><strong>Resend</strong>, which delivers form submissions to our inbox by email.</li>
+        <li><!-- PLACEHOLDER -->[Our email provider, accounting software, alarm monitoring partner, if relevant]</li>
+      </ul>
+      <p>Some of these providers may process data outside the UK. Where they do, they use approved safeguards such as the UK International Data Transfer Addendum.</p>
+
+      <h2>How long we keep it</h2>
+      <p>
+        <!-- PLACEHOLDER: confirm retention periods -->
+        If you don’t go ahead with a quote, we delete your enquiry after [12 months]. If you become a customer, we keep your details
+        for [6 years] after our last work for you, to meet our legal, insurance and accreditation obligations.
+      </p>
+
+      <h2>Cookies</h2>
+      <p>
+        This website doesn’t set any cookies for tracking or advertising, so we don’t need to ask for your consent. Cloudflare
+        Turnstile may store strictly necessary information in your browser to tell people and bots apart.
+      </p>
+
+      <h2>Your rights</h2>
+      <p>Under UK data protection law, you have the right to:</p>
+      <ul>
+        <li>ask for a copy of the information we hold about you</li>
+        <li>ask us to correct or delete it</li>
+        <li>object to or restrict how we use it</li>
+        <li>ask us to transfer it to someone else</li>
+      </ul>
+      <p>To make a request, email <a href={`mailto:${site.email}`}>{site.email}</a>. We’ll reply within one month.</p>
+
+      <h2>Complaints</h2>
+      <p>
+        If you’re unhappy with how we’ve handled your information, please tell us first. You can also complain to the
+        Information Commissioner’s Office at <a href="https://ico.org.uk/make-a-complaint/">ico.org.uk/make-a-complaint</a> or on 0303 123 1113.
+      </p>
+    </div>
+  </div>
+</BaseLayout>

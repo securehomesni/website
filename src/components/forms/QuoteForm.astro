@@ -1,0 +1,314 @@
+---
+/**
+ * Free survey / quote request form.
+ *
+ * - Works without JavaScript: posts to /api/quote (functions/api/quote.ts) and
+ *   redirects to /thank-you/.
+ * - With JavaScript: validates in the browser, shows an error summary and
+ *   inline errors, sends with fetch and shows the confirmation in place.
+ * - Spam protection: Cloudflare Turnstile (no puzzles) plus a hidden honeypot field.
+ *   Turnstile only loads when the form scrolls near the screen, to keep the page fast.
+ */
+import { site } from '../../config/site';
+
+const siteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || '1x00000000000000000000AA'; // test key fallback
+const interests = [
+  'CCTV',
+  'Intruder alarm',
+  'Smart doorbell',
+  'Alarm monitoring',
+  'Servicing or a repair',
+  'Not sure yet',
+];
+---
+<div data-quote-root>
+  <form
+    action="/api/quote"
+    method="post"
+    class="grid gap-6"
+    data-quote-form
+    data-phone={site.phone.display}
+    aria-describedby="qf-intro"
+  >
+    <p id="qf-intro" class="text-sm text-muted">All fields are required unless marked optional.</p>
+
+    <div class="rounded-md border-2 border-error bg-error-tint p-5" role="alert" tabindex="-1" hidden data-error-summary>
+      <h3 class="text-lg text-error">There is a problem</h3>
+      <ul class="mt-2 list-disc space-y-1 pl-5" data-error-list></ul>
+    </div>
+
+    <div class="field" data-field="name">
+      <label class="field-label" for="qf-name">Full name</label>
+      <p class="field-error" id="qf-name-error" hidden></p>
+      <input class="field-input" id="qf-name" name="name" type="text" autocomplete="name" required maxlength="100" />
+    </div>
+
+    <div class="grid gap-6 sm:grid-cols-2">
+      <div class="field" data-field="phone">
+        <label class="field-label" for="qf-phone">Phone number</label>
+        <p class="field-hint" id="qf-phone-hint">We’ll call to arrange your survey</p>
+        <p class="field-error" id="qf-phone-error" hidden></p>
+        <input class="field-input" id="qf-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" required maxlength="20" aria-describedby="qf-phone-hint" />
+      </div>
+
+      <div class="field" data-field="email">
+        <label class="field-label" for="qf-email">Email address</label>
+        <p class="field-hint" id="qf-email-hint">For your written quote</p>
+        <p class="field-error" id="qf-email-error" hidden></p>
+        <input class="field-input" id="qf-email" name="email" type="email" autocomplete="email" spellcheck="false" required maxlength="150" aria-describedby="qf-email-hint" />
+      </div>
+    </div>
+
+    <div class="field max-w-48" data-field="postcode">
+      <label class="field-label" for="qf-postcode">Postcode</label>
+      <p class="field-error" id="qf-postcode-error" hidden></p>
+      <input class="field-input uppercase" id="qf-postcode" name="postcode" type="text" autocomplete="postal-code" autocapitalize="characters" spellcheck="false" required maxlength="10" />
+    </div>
+
+    <fieldset class="field">
+      <legend class="field-label mb-1.5">What are you interested in? (optional)</legend>
+      <p class="field-hint mb-1">Select all that apply</p>
+      <div class="grid gap-x-6 sm:grid-cols-2">
+        {interests.map((label, i) => (
+          <label class="check" for={`qf-interest-${i}`}>
+            <input type="checkbox" id={`qf-interest-${i}`} name="interest" value={label} />
+            <span>{label}</span>
+          </label>
+        ))}
+      </div>
+    </fieldset>
+
+    <div class="field" data-field="message">
+      <label class="field-label" for="qf-message">Anything we should know? (optional)</label>
+      <p class="field-hint" id="qf-message-hint">For example, the best time to call or if you already have a system</p>
+      <p class="field-error" id="qf-message-error" hidden></p>
+      <textarea class="field-input" id="qf-message" name="message" rows="4" maxlength="2000" aria-describedby="qf-message-hint"></textarea>
+    </div>
+
+    <!-- Honeypot: hidden from people, often filled in by bots -->
+    <div class="absolute -left-[9999px] h-px w-px overflow-hidden" aria-hidden="true">
+      <label for="qf-website">Leave this field empty</label>
+      <input id="qf-website" name="website" type="text" tabindex="-1" autocomplete="off" />
+    </div>
+
+    <div class="cf-turnstile min-h-[65px]" data-sitekey={siteKey} data-size="flexible" data-theme="light"></div>
+
+    <p class="text-sm text-muted">
+      We’ll only use your details to arrange your survey and quote. Read our
+      <a class="link" href="/privacy-policy/">privacy policy</a>.
+    </p>
+
+    <div>
+      <button type="submit" class="btn btn-primary w-full px-8 text-lg sm:w-auto" data-submit>Book my free survey</button>
+      <p class="mt-4 font-semibold" role="status" aria-live="polite" data-status></p>
+    </div>
+  </form>
+
+  <div class="rounded-md border-2 border-teal-ink bg-mint p-6 md:p-8" tabindex="-1" hidden data-success>
+    <h3 class="text-2xl tracking-display">Thanks, your survey request has been sent</h3>
+    <p class="mt-4">
+      We’ll call you within one working day to arrange a time that suits you.
+      If it’s urgent, call us on <a class="link font-semibold" href={site.phone.href}>{site.phone.display}</a>.
+    </p>
+  </div>
+</div>
+
+<script>
+  // Turnstile adds window.turnstile once its script has loaded
+  const resetTurnstile = () =>
+    (window as unknown as { turnstile?: { reset: () => void } }).turnstile?.reset();
+
+  type FieldName = 'name' | 'phone' | 'email' | 'postcode' | 'message';
+  type Errors = Partial<Record<FieldName, string>>;
+
+  const root = document.querySelector<HTMLElement>('[data-quote-root]');
+  const form = root?.querySelector<HTMLFormElement>('[data-quote-form]');
+
+  if (root && form) {
+    const summary = form.querySelector<HTMLElement>('[data-error-summary]')!;
+    const summaryList = form.querySelector<HTMLUListElement>('[data-error-list]')!;
+    const status = form.querySelector<HTMLElement>('[data-status]')!;
+    const submit = form.querySelector<HTMLButtonElement>('[data-submit]')!;
+    const success = root.querySelector<HTMLElement>('[data-success]')!;
+    const phone = form.dataset.phone ?? '';
+    const submitLabel = submit.textContent ?? 'Send';
+
+    // We show our own, clearer error messages instead of the browser's
+    form.noValidate = true;
+
+    /* ---- Load Turnstile only when it's needed ----------------------- */
+    let turnstileLoaded = false;
+    const loadTurnstile = () => {
+      if (turnstileLoaded) return;
+      turnstileLoaded = true;
+      const script = document.createElement('script');
+      script.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js';
+      script.async = true;
+      script.defer = true;
+      document.head.appendChild(script);
+    };
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver(
+        (entries) => {
+          if (entries.some((e) => e.isIntersecting)) {
+            loadTurnstile();
+            io.disconnect();
+          }
+        },
+        { rootMargin: '800px 0px' },
+      );
+      io.observe(form);
+    } else {
+      loadTurnstile();
+    }
+    form.addEventListener('focusin', loadTurnstile, { once: true });
+
+    /* ---- Validation ------------------------------------------------- */
+    const value = (name: string) => String(new FormData(form).get(name) ?? '').trim();
+
+    const validate = (): Errors => {
+      const errors: Errors = {};
+      const name = value('name');
+      const tel = value('phone');
+      const email = value('email');
+      const postcode = value('postcode');
+
+      if (!name) errors.name = 'Enter your full name';
+
+      if (!tel) errors.phone = 'Enter your phone number';
+      else if (!/^[0-9 +()-]+$/.test(tel) || tel.replace(/\D/g, '').length < 10)
+        errors.phone = 'Enter a phone number, like 07700 900123 or 028 9000 0000';
+
+      if (!email) errors.email = 'Enter your email address';
+      else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))
+        errors.email = 'Enter an email address in the correct format, like name@example.com';
+
+      if (!postcode) errors.postcode = 'Enter your postcode';
+      else if (!/^[A-Z]{1,2}[0-9][A-Z0-9]? ?[0-9][A-Z]{2}$/i.test(postcode))
+        errors.postcode = 'Enter a full postcode, like BT1 1AA';
+
+      return errors;
+    };
+
+    const setFieldError = (name: string, message?: string) => {
+      const wrap = form.querySelector<HTMLElement>(`[data-field="${name}"]`);
+      if (!wrap) return;
+      const input = wrap.querySelector<HTMLInputElement | HTMLTextAreaElement>('input, textarea')!;
+      const error = wrap.querySelector<HTMLElement>('.field-error')!;
+      const hint = wrap.querySelector<HTMLElement>('.field-hint');
+      const describedBy = [hint?.id, message ? error.id : null].filter(Boolean).join(' ');
+
+      if (message) {
+        error.innerHTML = '';
+        const prefix = document.createElement('span');
+        prefix.className = 'sr-only';
+        prefix.textContent = 'Error: ';
+        error.append(prefix, message);
+        error.hidden = false;
+        input.setAttribute('aria-invalid', 'true');
+        wrap.classList.add('has-error');
+      } else {
+        error.hidden = true;
+        error.textContent = '';
+        input.removeAttribute('aria-invalid');
+        wrap.classList.remove('has-error');
+      }
+      if (describedBy) input.setAttribute('aria-describedby', describedBy);
+      else input.removeAttribute('aria-describedby');
+    };
+
+    const showErrors = (errors: Errors) => {
+      const fields: FieldName[] = ['name', 'phone', 'email', 'postcode', 'message'];
+      fields.forEach((f) => setFieldError(f, errors[f]));
+
+      const entries = Object.entries(errors) as [FieldName, string][];
+      summaryList.innerHTML = '';
+      if (!entries.length) {
+        summary.hidden = true;
+        return;
+      }
+      for (const [field, message] of entries) {
+        const li = document.createElement('li');
+        const a = document.createElement('a');
+        a.href = `#qf-${field}`;
+        a.className = 'link font-semibold text-error';
+        a.textContent = message;
+        a.addEventListener('click', (e) => {
+          e.preventDefault();
+          form.querySelector<HTMLElement>(`#qf-${field}`)?.focus();
+        });
+        li.append(a);
+        summaryList.append(li);
+      }
+      summary.hidden = false;
+      summary.focus();
+    };
+
+    // Once a field has an error, re-check it as the person types
+    form.addEventListener('input', (event) => {
+      const target = event.target as HTMLInputElement;
+      const wrap = target.closest<HTMLElement>('[data-field]');
+      if (!wrap?.classList.contains('has-error')) return;
+      const name = wrap.dataset.field as FieldName;
+      const errors = validate();
+      if (!errors[name]) setFieldError(name);
+    });
+
+    /* ---- Submit ----------------------------------------------------- */
+    const fail = (message: string) => {
+      status.textContent = message;
+      status.classList.add('text-error');
+      resetTurnstile();
+    };
+
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      status.textContent = '';
+      status.classList.remove('text-error');
+
+      const errors = validate();
+      if (Object.keys(errors).length) {
+        showErrors(errors);
+        return;
+      }
+      showErrors({});
+
+      const data = new FormData(form);
+      if (!data.get('cf-turnstile-response')) {
+        loadTurnstile();
+        fail('Our spam check is still loading. Wait a few seconds, then select “Book my free survey” again.');
+        return;
+      }
+
+      submit.disabled = true;
+      submit.textContent = 'Sending…';
+
+      try {
+        const response = await fetch(form.action, {
+          method: 'POST',
+          body: data,
+          headers: { Accept: 'application/json' },
+        });
+        const result = (await response.json().catch(() => ({}))) as { ok?: boolean; errors?: Errors; message?: string };
+
+        if (response.ok && result.ok) {
+          form.hidden = true;
+          success.hidden = false;
+          success.focus();
+          return;
+        }
+        if (result.errors && Object.keys(result.errors).length) {
+          showErrors(result.errors);
+          resetTurnstile();
+        } else {
+          fail(result.message ?? `Your request wasn’t sent. Try again, or call us on ${phone}.`);
+        }
+      } catch {
+        fail(`Your request wasn’t sent because of a connection problem. Check your internet connection and try again, or call us on ${phone}.`);
+      } finally {
+        submit.disabled = false;
+        submit.textContent = submitLabel;
+      }
+    });
+  }
+</script>

@@ -1,0 +1,52 @@
+---
+/**
+ * How it works. A genuine four-step sequence, so it's an ordered list
+ * with step numbers.
+ */
+import { ctaLabel, site } from '../../config/site';
+import Placeholder from '../ui/Placeholder.astro';
+---
+<section aria-labelledby="process-title" class="bg-mint py-section">
+  <div class="wrap">
+    <div class="max-w-2xl">
+      <h2 id="process-title" class="text-3xl tracking-display">How it works</h2>
+      <p class="mt-5 text-lg">From first visit to the day you need help, you deal with the same local team.</p>
+    </div>
+
+    <ol class="mt-14 grid gap-10 md:grid-cols-2 lg:grid-cols-4 lg:gap-8">
+      <li class="border-t-2 border-navy pt-5">
+        <p class="text-sm font-semibold text-teal-ink">Step 1</p>
+        <h3 class="mt-1 text-xl">Free survey</h3>
+        <p class="mt-3">An engineer visits, walks round with you and listens to what you want to protect. No charge and no obligation.</p>
+      </li>
+      <li class="border-t-2 border-navy pt-5">
+        <p class="text-sm font-semibold text-teal-ink">Step 2</p>
+        <h3 class="mt-1 text-xl">Fixed quote</h3>
+        <p class="mt-3">
+          A written quote <Placeholder note="Quote turnaround">within two working days</Placeholder>, setting out the equipment, where it goes and the price.
+        </p>
+      </li>
+      <li class="border-t-2 border-navy pt-5">
+        <p class="text-sm font-semibold text-teal-ink">Step 3</p>
+        <h3 class="mt-1 text-xl">Installation</h3>
+        <p class="mt-3">
+          Most homes take <Placeholder note="Typical install time">a day</Placeholder>. We keep cabling tidy, test everything and show you how it all works.
+        </p>
+      </li>
+      <li class="border-t-2 border-navy pt-5">
+        <p class="text-sm font-semibold text-teal-ink">Step 4</p>
+        <h3 class="mt-1 text-xl">Aftercare</h3>
+        <p class="mt-3">
+          A <Placeholder note="Warranty length">two-year</Placeholder> warranty, help on the phone when you need it, and optional servicing.
+        </p>
+      </li>
+    </ol>
+
+    <div class="mt-14 flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-6">
+      <a href="#quote" class="btn btn-primary">{ctaLabel}</a>
+      <p class="text-muted">
+        Prefer to talk? Call <a href={site.phone.href} class="link font-semibold">{site.phone.display}</a>
+      </p>
+    </div>
+  </div>
+</section>

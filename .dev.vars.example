@@ -1,0 +1,13 @@
+# Copy to .dev.vars to test the form function locally with `npm run pages:dev`.
+# These are SECRETS. In production, add them in Cloudflare Pages → Settings → Variables and secrets.
+
+# Cloudflare's Turnstile test secret (always passes). Replace with the real secret in production.
+TURNSTILE_SECRET_KEY=1x0000000000000000000000000000000AA
+
+# Resend (https://resend.com) sends the enquiry email. Leave blank locally with DEV_MODE=true
+# and submissions are printed to the terminal instead of emailed.
+RESEND_API_KEY=
+QUOTE_TO_EMAIL=hello@example.co.uk
+QUOTE_FROM_EMAIL=Website <website@example.co.uk>
+
+DEV_MODE=true

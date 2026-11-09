@@ -1,0 +1,48 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import CtaPanel from '../../components/CtaPanel.astro';
+import Icon from '../../components/ui/Icon.astro';
+import { site } from '../../config/site';
+import { breadcrumbSchema } from '../../lib/schema';
+
+const locations = await getCollection('locations');
+const pageFor = (town: string) => locations.find((l) => l.data.name.toLowerCase() === town.toLowerCase());
+const crumbs = [
+  { name: 'Home', path: '/' },
+  { name: 'Areas we cover', path: '/areas/' },
+];
+const siteUrl = Astro.site ?? new URL(Astro.url.origin);
+---
+<BaseLayout
+  title="Areas We Cover for CCTV and Alarm Installation"
+  description={`We install CCTV and intruder alarms in homes across ${site.areaSummary}. See the towns we cover and book a free survey.`}
+  schema={[breadcrumbSchema(crumbs, siteUrl)]}
+>
+  <PageHeader
+    title="Areas we cover"
+    intro={`We’re based in ${site.address.locality} and install and service home security systems across ${site.areaSummary}.`}
+    breadcrumbs={crumbs}
+  />
+  <div class="wrap grid gap-12 py-section lg:grid-cols-12">
+    <div class="lg:col-span-8">
+      <ul class="columns-1 gap-10 sm:columns-2">
+        {site.areas.map((town) => {
+          const page = pageFor(town);
+          return (
+            <li class="flex min-h-12 break-inside-avoid items-center gap-2.5 border-b border-line text-lg">
+              <Icon name="pin" class="text-teal" />
+              {page ? <a class="link font-semibold" href={`/areas/${page.id}/`}>CCTV and alarms in {town}</a> : <span>{town}</span>}
+            </li>
+          );
+        })}
+      </ul>
+      <p class="mt-8 max-w-xl text-muted">
+        Your town not listed? We often travel further. Call
+        <a class="link font-semibold" href={site.phone.href}>{site.phone.display}</a> to check.
+      </p>
+    </div>
+    <div class="lg:col-span-4"><CtaPanel /></div>
+  </div>
+</BaseLayout>

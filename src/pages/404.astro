@@ -1,0 +1,20 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { site, nav } from '../config/site';
+---
+<BaseLayout title="Page not found" description="The page you were looking for could not be found." noindex>
+  <div class="wrap py-section">
+    <div class="max-w-2xl">
+      <h1 class="text-3xl tracking-display">Page not found</h1>
+      <p class="mt-6 text-lg">
+        If you typed the web address, check it’s correct. If you followed a link, it may be out of date.
+      </p>
+      <h2 class="mt-10 text-xl">Try one of these instead</h2>
+      <ul class="mt-4 space-y-1">
+        <li><a class="link inline-flex min-h-10 items-center" href="/">Homepage</a></li>
+        {nav.map((item) => <li><a class="link inline-flex min-h-10 items-center" href={item.href}>{item.label}</a></li>)}
+      </ul>
+      <p class="mt-8">Or call us on <a class="link font-semibold" href={site.phone.href}>{site.phone.display}</a>.</p>
+    </div>
+  </div>
+</BaseLayout>

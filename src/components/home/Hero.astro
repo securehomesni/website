@@ -1,0 +1,76 @@
+---
+/**
+ * Hero: headline, supporting line, primary CTA and phone number on the left.
+ * On the right, a "survey sheet" sets out exactly what the free survey covers,
+ * which answers the question most people have before booking.
+ * The hero is text-only so it paints fast (good LCP).
+ */
+import { site, ctaLabel } from '../../config/site';
+import Icon from '../ui/Icon.astro';
+import Placeholder from '../ui/Placeholder.astro';
+
+const surveyCovers = [
+  'A walk round every door, window and outbuilding with you',
+  'Where cameras can see what you need, and nothing they shouldn’t',
+  'Wi-Fi strength and power at each spot',
+  'Alarm sensors planned around pets and how you use the house',
+  'Your options explained, with no pressure to decide on the day',
+];
+---
+<section aria-labelledby="hero-title" class="border-b border-line">
+  <div class="wrap grid gap-12 py-14 md:py-20 lg:grid-cols-12 lg:items-center lg:gap-10 lg:py-24">
+    <div class="lg:col-span-7">
+      <h1 id="hero-title" class="max-w-[13ch] text-display font-bold tracking-display text-navy">
+        Home security, fitted properly and explained plainly.
+      </h1>
+      <p class="mt-6 max-w-xl text-lg text-ink">
+        CCTV and intruder alarms for homes across
+        <Placeholder note="Service area summary">{site.areaSummary}</Placeholder>.
+        Local, SSAIB-registered engineers and a fixed written quote before any work starts.
+      </p>
+
+      <div class="mt-9 flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-6">
+        <a href="#quote" class="btn btn-primary px-7 text-lg">{ctaLabel}</a>
+        <a href={site.phone.href} class="group inline-flex min-h-12 items-center gap-2.5 text-lg font-semibold text-navy">
+          <Icon name="phone" class="text-teal" />
+          <span>
+            or call <span class="underline decoration-teal decoration-2 underline-offset-4 group-hover:text-teal-ink">{site.phone.display}</span>
+          </span>
+        </a>
+      </div>
+
+      <ul class="mt-10 flex flex-wrap gap-x-7 gap-y-3 text-sm text-muted" aria-label="Why you can trust us">
+        <li class="inline-flex items-center gap-2"><Icon name="check" class="text-teal-ink" />SSAIB registered</li>
+        <li class="inline-flex items-center gap-2"><Icon name="check" class="text-teal-ink" />
+          <Placeholder note="Insurance amount">{site.insurance.publicLiability}</Placeholder> public liability cover
+        </li>
+        <li class="inline-flex items-center gap-2"><Icon name="check" class="text-teal-ink" />
+          <Placeholder note="Real Google rating and count">Rated {site.reviews.rating} out of 5 from {site.reviews.count} {site.reviews.platform} reviews</Placeholder>
+        </li>
+      </ul>
+    </div>
+
+    <div class="lg:col-span-5">
+      <div class="rounded-md border border-line bg-white">
+        <div class="flex items-baseline justify-between gap-4 border-b border-line px-6 py-4">
+          <h2 id="survey-sheet-title" class="text-lg">What your free survey covers</h2>
+          <p class="shrink-0 text-sm text-muted">About 45 minutes</p>
+        </div>
+        <ul class="px-6 py-2">
+          {surveyCovers.map((item) => (
+            <li class="flex gap-3.5 border-b border-dashed border-line py-3.5 last:border-b-0">
+              <span class="mt-0.5 grid size-5 shrink-0 place-items-center rounded-sm border-[1.5px] border-teal text-teal-ink" aria-hidden="true">
+                <Icon name="check" class="size-3.5" />
+              </span>
+              <span>{item}</span>
+            </li>
+          ))}
+        </ul>
+        <p class="rounded-b-md bg-mint px-6 py-4 text-sm text-navy">
+          Afterwards you get a fixed written quote, usually within
+          <Placeholder note="Quote turnaround">two working days</Placeholder>.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>

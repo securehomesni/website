@@ -1,0 +1,118 @@
+---
+import { site, nav, ctaLabel } from '../config/site';
+import Logo from './Logo.astro';
+import Icon from './ui/Icon.astro';
+
+interface Props {
+  quoteHref?: string;
+}
+const { quoteHref = '/contact/#quote' } = Astro.props;
+const path = Astro.url.pathname;
+const isCurrent = (href: string) => path === href || (href !== '/' && path.startsWith(href));
+---
+<header class="sticky top-0 z-40 border-b border-line bg-paper/95 backdrop-blur-sm supports-[backdrop-filter]:bg-paper/85">
+  <div class="wrap flex h-(--header-height) items-center justify-between gap-4 xl:gap-6">
+    <Logo />
+
+    <nav aria-label="Main" class="hidden lg:block">
+      <ul class="flex items-center gap-0.5 xl:gap-1">
+        {nav.map((item) => (
+          <li>
+            <a
+              href={item.href}
+              aria-current={isCurrent(item.href) ? 'page' : undefined}
+              class="inline-flex min-h-11 items-center whitespace-nowrap rounded-sm px-2.5 font-medium text-ink hover:text-teal-ink aria-[current=page]:text-navy aria-[current=page]:underline aria-[current=page]:decoration-teal aria-[current=page]:decoration-2 aria-[current=page]:underline-offset-8"
+            >
+              {item.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+
+    <div class="flex items-center gap-2">
+      <a
+        href={site.phone.href}
+        class="hidden min-h-11 items-center gap-2 whitespace-nowrap rounded-sm px-2 font-semibold text-navy hover:text-teal-ink md:inline-flex lg:hidden xl:inline-flex"
+      >
+        <Icon name="phone" class="text-teal" />
+        <span><span class="sr-only">Call us on </span>{site.phone.display}</span>
+      </a>
+      <a href={quoteHref} class="btn btn-primary hidden min-h-11 py-2 sm:inline-flex">{ctaLabel}</a>
+
+      <button
+        type="button"
+        class="inline-flex min-h-11 min-w-11 items-center gap-2 rounded-sm border border-line-strong px-3 font-semibold text-navy lg:hidden"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+        data-menu-toggle
+      >
+        <svg class="size-5" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <path data-icon-open d="M4 7h16M4 12h16M4 17h16" />
+          <path data-icon-close d="M6 6l12 12M18 6 6 18" class="hidden" />
+        </svg>
+        <span>Menu</span>
+      </button>
+    </div>
+  </div>
+
+  <div id="mobile-menu" class="border-t border-line bg-paper lg:hidden" hidden data-menu>
+    <nav aria-label="Main (mobile)" class="wrap py-4">
+      <ul class="divide-y divide-line">
+        {nav.map((item) => (
+          <li>
+            <a
+              href={item.href}
+              aria-current={isCurrent(item.href) ? 'page' : undefined}
+              class="flex min-h-12 items-center text-lg font-semibold text-navy hover:text-teal-ink aria-[current=page]:text-teal-ink"
+            >
+              {item.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+      <div class="mt-4 grid gap-3 pb-2 sm:hidden">
+        <a href={quoteHref} class="btn btn-primary w-full">{ctaLabel}</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<script>
+  const toggle = document.querySelector<HTMLButtonElement>('[data-menu-toggle]');
+  const menu = document.querySelector<HTMLElement>('[data-menu]');
+
+  if (toggle && menu) {
+    const openIcon = toggle.querySelector('[data-icon-open]');
+    const closeIcon = toggle.querySelector('[data-icon-close]');
+
+    const setOpen = (open: boolean) => {
+      toggle.setAttribute('aria-expanded', String(open));
+      menu.hidden = !open;
+      openIcon?.classList.toggle('hidden', open);
+      closeIcon?.classList.toggle('hidden', !open);
+    };
+
+    toggle.addEventListener('click', () => {
+      setOpen(toggle.getAttribute('aria-expanded') !== 'true');
+    });
+
+    // Escape closes the menu and returns focus to the button
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && !menu.hidden) {
+        setOpen(false);
+        toggle.focus();
+      }
+    });
+
+    // Close after following an in-page link (e.g. #quote)
+    menu.addEventListener('click', (event) => {
+      if ((event.target as HTMLElement).closest('a')) setOpen(false);
+    });
+
+    // Reset if the window grows to desktop width
+    window.matchMedia('(min-width: 64rem)').addEventListener('change', (e) => {
+      if (e.matches) setOpen(false);
+    });
+  }
+</script>

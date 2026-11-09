@@ -1,0 +1,68 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHeader from '../components/PageHeader.astro';
+import { site } from '../config/site';
+
+const prepared = '9 November 2026'; // PLACEHOLDER: update after each accessibility review
+---
+<BaseLayout
+  title="Accessibility Statement"
+  description={`How accessible the ${site.name} website is, how we tested it, and how to report a problem.`}
+>
+  <PageHeader
+    title="Accessibility statement"
+    intro={`We want everyone to be able to use this website, find information and book a survey.`}
+    breadcrumbs={[{ name: 'Home', path: '/' }, { name: 'Accessibility statement', path: '/accessibility-statement/' }]}
+  />
+  <div class="wrap py-section">
+    <div class="prose-content">
+      <h2>What you should be able to do</h2>
+      <p>You should be able to:</p>
+      <ul>
+        <li>use the whole website with only a keyboard</li>
+        <li>zoom in up to 400% without text spilling off the screen</li>
+        <li>use the website with a screen reader, such as NVDA, JAWS or VoiceOver</li>
+        <li>use the website with animations reduced, if you’ve turned that on in your device settings</li>
+        <li>book a survey without solving a puzzle or picture test</li>
+      </ul>
+
+      <h2>How accessible this website is</h2>
+      <p>
+        We aim to meet the Web Content Accessibility Guidelines (WCAG) 2.2 at level AA.
+        <!-- PLACEHOLDER: update after testing. State "fully meets" only if testing confirms it, and list any known issues. -->
+        We believe the website meets this standard. If you find something that doesn’t work for you, please tell us.
+      </p>
+
+      <h2>Known issues</h2>
+      <p>
+        <!-- PLACEHOLDER: list any known issues found in testing, or say there are none. -->
+        The spam check on our form is provided by Cloudflare Turnstile. It works automatically in most cases, but if it doesn’t
+        load for you, you can call us on {site.phone.display} instead.
+      </p>
+
+      <h2>Reporting a problem or asking for another format</h2>
+      <p>
+        If you have difficulty using this website, or need information in a different format, contact us:
+      </p>
+      <ul>
+        <li>phone: <a href={site.phone.href}>{site.phone.display}</a></li>
+        <li>email: <a href={`mailto:${site.email}`}>{site.email}</a></li>
+      </ul>
+      <p>We’ll reply within [5 working days].</p>
+
+      <h2>How we tested this website</h2>
+      <p>
+        <!-- PLACEHOLDER: fill in after testing -->
+        This website was last tested on [date]. We tested it with automated tools (axe and Lighthouse), by navigating every page
+        using only a keyboard, and with screen readers (VoiceOver on macOS and iOS, and NVDA on Windows).
+      </p>
+
+      <h2>If you’re not happy with our response</h2>
+      <p>
+        You can contact the <a href="https://www.equalityni.org/">Equality Commission for Northern Ireland</a> for advice.
+      </p>
+
+      <p>This statement was prepared on {prepared}.</p>
+    </div>
+  </div>
+</BaseLayout>

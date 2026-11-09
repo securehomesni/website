@@ -1,0 +1,23 @@
+---
+/**
+ * Fixed bar on small screens so calling or booking is always one tap away.
+ * Hidden from 768px up, where the header shows the phone number and button.
+ */
+import { site } from '../config/site';
+import Icon from './ui/Icon.astro';
+
+interface Props {
+  quoteHref?: string;
+}
+const { quoteHref = '/contact/#quote' } = Astro.props;
+---
+<aside
+  aria-label="Quick contact"
+  class="fixed inset-x-0 bottom-0 z-30 grid grid-cols-2 gap-3 border-t border-line bg-paper/95 px-4 pt-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] backdrop-blur-sm md:hidden"
+>
+  <a href={site.phone.href} class="btn btn-secondary w-full px-3">
+    <Icon name="phone" />
+    <span>Call<span class="sr-only"> {site.phone.display}</span></span>
+  </a>
+  <a href={quoteHref} class="btn btn-primary w-full px-3">Book a survey</a>
+</aside>

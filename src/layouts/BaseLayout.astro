@@ -1,0 +1,65 @@
+---
+import '@fontsource-variable/schibsted-grotesk';
+import '../styles/global.css';
+import SEO from '../components/SEO.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import MobileCallBar from '../components/MobileCallBar.astro';
+import { site } from '../config/site';
+import { localBusinessSchema } from '../lib/schema';
+
+interface Props {
+  title: string;
+  description: string;
+  image?: string;
+  noindex?: boolean;
+  type?: 'website' | 'article';
+  /** Where "Book a free survey" buttons point. Pages with the form use '#quote'. */
+  quoteHref?: string;
+  /** Include LocalBusiness JSON-LD (homepage and contact page). */
+  businessSchema?: boolean;
+  /** Extra JSON-LD objects, e.g. breadcrumbs or Service. */
+  schema?: object[];
+}
+
+const {
+  title,
+  description,
+  image,
+  noindex = false,
+  type = 'website',
+  quoteHref = '/contact/#quote',
+  businessSchema = false,
+  schema = [],
+} = Astro.props;
+
+const siteUrl = Astro.site ?? new URL(Astro.url.origin);
+const jsonLd = [...(businessSchema ? [localBusinessSchema(siteUrl)] : []), ...schema];
+const beacon = site.analytics.cloudflareToken
+  ? JSON.stringify({ token: site.analytics.cloudflareToken })
+  : null;
+---
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <SEO title={title} description={description} image={image} noindex={noindex} type={type} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta name="theme-color" content="#142d4e" />
+    <meta name="format-detection" content="telephone=no" />
+    {jsonLd.map((data) => <script is:inline type="application/ld+json" set:html={JSON.stringify(data)} />)}
+    {beacon && (
+      <script is:inline defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon={beacon}></script>
+    )}
+  </head>
+  <body class="flex min-h-dvh flex-col pb-20 md:pb-0">
+    <a href="#main" class="skip-link">Skip to main content</a>
+    <Header quoteHref={quoteHref} />
+    <main id="main" tabindex="-1" class="flex-1 focus:outline-none">
+      <slot />
+    </main>
+    <Footer />
+    <MobileCallBar quoteHref={quoteHref} />
+  </body>
+</html>

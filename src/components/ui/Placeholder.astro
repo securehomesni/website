@@ -1,0 +1,20 @@
+---
+/**
+ * Wrap any content that still needs real copy or photos.
+ * During `npm run dev` it gets a dashed orange outline so gaps are easy to spot.
+ * In production builds it renders the content with no extra styling.
+ *
+ * <Placeholder note="Real review count from Google">120 reviews</Placeholder>
+ */
+interface Props {
+  note?: string;
+  as?: 'span' | 'div';
+}
+const { note = 'Placeholder content', as: Tag = 'span' } = Astro.props;
+const dev = import.meta.env.DEV;
+---
+{dev ? (
+  <Tag class="placeholder-dev" title={`PLACEHOLDER: ${note}`} data-placeholder={note}><slot /></Tag>
+) : (
+  <slot />
+)}

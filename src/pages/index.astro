@@ -1,0 +1,25 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/home/Hero.astro';
+import Services from '../components/home/Services.astro';
+import Process from '../components/home/Process.astro';
+import Trust from '../components/home/Trust.astro';
+import Areas from '../components/home/Areas.astro';
+import Faq from '../components/home/Faq.astro';
+import QuoteSection from '../components/QuoteSection.astro';
+import { site } from '../config/site';
+---
+<BaseLayout
+  title={`CCTV and Alarm Installers in Belfast | ${site.name}`}
+  description="Local, SSAIB-registered installers of home CCTV and intruder alarms in Belfast and across Northern Ireland. Book a free home security survey."
+  quoteHref="#quote"
+  businessSchema
+>
+  <Hero />
+  <Services />
+  <Process />
+  <Trust />
+  <Areas />
+  <Faq />
+  <QuoteSection />
+</BaseLayout>

@@ -1,0 +1,26 @@
+---
+/**
+ * PLACEHOLDER logo. Replace the SVG mark with the real logo when supplied.
+ * The business name stays as real text (better for accessibility and SEO).
+ */
+import { site } from '../config/site';
+interface Props {
+  tone?: 'dark' | 'light';
+}
+const { tone = 'dark' } = Astro.props;
+const isHome = Astro.url.pathname === '/';
+const textColour = tone === 'light' ? 'text-paper' : 'text-navy';
+const markColour = tone === 'light' ? 'text-teal-soft' : 'text-teal';
+---
+<a
+  href="/"
+  class={`inline-flex min-h-11 items-center gap-2.5 font-bold tracking-tight ${textColour}`}
+  aria-current={isHome ? 'page' : undefined}
+>
+  <svg class={`size-8 ${markColour}`} viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+    <path d="M4 15 16 5l12 10" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M8 13.5V27h16V13.5" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round" />
+    <circle cx="16" cy="19" r="3.25" fill="currentColor" />
+  </svg>
+  <span class="whitespace-nowrap text-lg leading-none">{site.name}</span>
+</a>

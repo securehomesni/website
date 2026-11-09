@@ -1,0 +1,77 @@
+---
+import { getCollection } from 'astro:content';
+import { site, nav, legalNav } from '../config/site';
+import Logo from './Logo.astro';
+
+const services = (await getCollection('services')).sort((a, b) => a.data.order - b.data.order);
+const year = new Date().getFullYear();
+---
+<footer class="on-dark bg-navy text-paper">
+  <div class="wrap grid gap-12 py-16 md:grid-cols-12 md:gap-8">
+    <div class="md:col-span-4">
+      <Logo tone="light" />
+      <p class="mt-4 max-w-xs text-sm text-paper/85">{site.description}</p>
+
+      <div class="mt-8 border-l-2 border-teal-soft pl-4">
+        <p class="font-semibold">SSAIB registered installer</p>
+        <p class="text-sm text-paper/85">Registration number {site.ssaib.registrationNumber}</p>
+        <p class="mt-1 text-sm">
+          <a class="link" href={site.ssaib.url}>Check our registration on the SSAIB website</a>
+        </p>
+      </div>
+    </div>
+
+    <div class="md:col-span-3">
+      <h2 class="text-base font-semibold text-paper">Contact us</h2>
+      <ul class="mt-4 space-y-2 text-sm">
+        <li><a class="link text-base font-semibold" href={site.phone.href}>{site.phone.display}</a></li>
+        <li><a class="link" href={`mailto:${site.email}`}>{site.email}</a></li>
+        <li class="pt-2 text-paper/85">
+          {site.address.showStreet && site.address.street && <>{site.address.street}<br /></>}
+          {site.address.locality}, {site.address.postcode}
+        </li>
+      </ul>
+      <h3 class="mt-6 text-sm font-semibold text-paper">Opening hours</h3>
+      <dl class="mt-2 text-sm text-paper/85">
+        {site.hours.map((h) => (
+          <div class="flex gap-2">
+            <dt>{h.days}:</dt>
+            <dd>{h.time}</dd>
+          </div>
+        ))}
+      </dl>
+    </div>
+
+    <nav aria-label="Services" class="md:col-span-2">
+      <h2 class="text-base font-semibold text-paper">Services</h2>
+      <ul class="mt-4 space-y-1 text-sm">
+        {services.map((s) => (
+          <li><a class="inline-flex min-h-8 items-center text-paper/85 hover:text-white hover:underline" href={`/services/${s.id}/`}>{s.data.shortTitle}</a></li>
+        ))}
+      </ul>
+    </nav>
+
+    <nav aria-label="Company" class="md:col-span-3">
+      <h2 class="text-base font-semibold text-paper">Company</h2>
+      <ul class="mt-4 space-y-1 text-sm">
+        {nav.map((item) => (
+          <li><a class="inline-flex min-h-8 items-center text-paper/85 hover:text-white hover:underline" href={item.href}>{item.label}</a></li>
+        ))}
+      </ul>
+    </nav>
+  </div>
+
+  <div class="bg-navy-deep">
+    <div class="wrap flex flex-col gap-3 py-6 text-sm text-paper/85 md:flex-row md:items-center md:justify-between">
+      <p>
+        &copy; {year} {site.legalName}. Registered in Northern Ireland, company number {site.companyNumber}.
+        Public liability insurance {site.insurance.publicLiability}.
+      </p>
+      <ul class="flex shrink-0 flex-wrap gap-x-6 gap-y-1">
+        {legalNav.map((item) => (
+          <li><a class="inline-flex min-h-8 items-center hover:text-white hover:underline" href={item.href}>{item.label}</a></li>
+        ))}
+      </ul>
+    </div>
+  </div>
+</footer>

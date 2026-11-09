@@ -1,0 +1,27 @@
+---
+/** Confirmation page for form posts made without JavaScript. Not indexed. */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { site } from '../config/site';
+---
+<BaseLayout
+  title="Thanks, your survey request has been sent"
+  description="We’ve received your request for a free home security survey."
+  noindex
+>
+  <div class="wrap py-section">
+    <div class="max-w-2xl">
+      <h1 class="text-3xl tracking-display">Thanks, your survey request has been sent</h1>
+      <p class="mt-6 text-lg">We’ll call you within one working day to arrange a time that suits you.</p>
+      <h2 class="mt-12 text-xl">What happens next</h2>
+      <ol class="prose-content mt-4">
+        <li>We call to book your free survey.</li>
+        <li>An engineer visits and looks round your home with you.</li>
+        <li>You get a fixed written quote, with no pressure to decide.</li>
+      </ol>
+      <p class="mt-10">
+        Need us sooner? Call <a class="link font-semibold" href={site.phone.href}>{site.phone.display}</a>.
+      </p>
+      <p class="mt-4"><a class="link" href="/">Back to the homepage</a></p>
+    </div>
+  </div>
+</BaseLayout>

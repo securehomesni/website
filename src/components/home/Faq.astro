@@ -1,0 +1,26 @@
+---
+/**
+ * FAQs using native <details>/<summary>: keyboard and screen reader
+ * friendly with no JavaScript. Questions live in src/data/faqs.ts.
+ */
+import { faqs, ICO_HOME_CCTV_URL } from '../../data/faqs';
+---
+<section aria-labelledby="faq-title" class="py-section">
+  <div class="wrap grid gap-10 lg:grid-cols-12">
+    <div class="lg:col-span-4">
+      <h2 id="faq-title" class="text-3xl tracking-display">Common questions</h2>
+      <p class="mt-5 text-muted">
+        Including what the law says about CCTV at home. For the full picture, read the
+        <a class="link" href={ICO_HOME_CCTV_URL}>Information Commissioner’s guidance on home CCTV</a>.
+      </p>
+    </div>
+    <div class="border-t border-line lg:col-span-8">
+      {faqs.map((faq) => (
+        <details class="faq-item border-b border-line">
+          <summary>{faq.question}</summary>
+          <div class="prose-content pb-6 text-ink" set:html={`<p>${faq.answer}</p>`} />
+        </details>
+      ))}
+    </div>
+  </div>
+</section>

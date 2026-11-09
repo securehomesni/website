@@ -1,0 +1,43 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import CtaPanel from '../../components/CtaPanel.astro';
+import { breadcrumbSchema } from '../../lib/schema';
+
+const services = (await getCollection('services')).sort((a, b) => a.data.order - b.data.order);
+const crumbs = [
+  { name: 'Home', path: '/' },
+  { name: 'Services', path: '/services/' },
+];
+const siteUrl = Astro.site ?? new URL(Astro.url.origin);
+---
+<BaseLayout
+  title="Home Security Services: CCTV, Alarms and More"
+  description="CCTV installation, intruder alarms, smart doorbells, monitoring and servicing for homes in Belfast and across Northern Ireland."
+  schema={[breadcrumbSchema(crumbs, siteUrl)]}
+>
+  <PageHeader
+    title="Home security services"
+    intro="Everything we fit is chosen for your home on a free survey, installed by our own SSAIB-registered engineers and backed by local aftercare."
+    breadcrumbs={crumbs}
+  />
+  <div class="wrap grid gap-12 py-section lg:grid-cols-12">
+    <ul class="lg:col-span-8">
+      {services.map((s) => (
+        <li class="border-t border-line py-8 first:border-t-2 first:border-navy">
+          <h2 class="text-2xl tracking-display">
+            <a class="hover:text-teal-ink hover:underline" href={`/services/${s.id}/`}>{s.data.title}</a>
+          </h2>
+          <p class="mt-3 max-w-2xl text-lg">{s.data.summary}</p>
+          <p class="mt-4"><a class="link font-semibold" href={`/services/${s.id}/`}>More about {s.data.title.toLowerCase()}</a></p>
+        </li>
+      ))}
+    </ul>
+    <div class="lg:col-span-4">
+      <div class="lg:sticky lg:top-[calc(var(--header-height)+2rem)]">
+        <CtaPanel />
+      </div>
+    </div>
+  </div>
+</BaseLayout>

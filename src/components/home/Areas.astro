@@ -1,0 +1,48 @@
+---
+/**
+ * Areas covered. Towns come from site.areas; a town links to its own page
+ * when there's a matching file in src/content/locations/.
+ */
+import { getCollection } from 'astro:content';
+import { site, ctaLabel } from '../../config/site';
+import Icon from '../ui/Icon.astro';
+import Placeholder from '../ui/Placeholder.astro';
+
+const locations = await getCollection('locations');
+const pageFor = (town: string) => locations.find((l) => l.data.name.toLowerCase() === town.toLowerCase());
+---
+<section aria-labelledby="areas-title" class="border-y border-line bg-white py-section">
+  <div class="wrap grid gap-12 lg:grid-cols-12">
+    <div class="lg:col-span-5">
+      <h2 id="areas-title" class="text-3xl tracking-display">Areas we cover</h2>
+      <p class="mt-5 text-lg">
+        We cover homes across <Placeholder note="Service area">{site.areaSummary}</Placeholder>, from our base in <Placeholder note="Base town">{site.address.locality}</Placeholder>.
+      </p>
+      <p class="mt-4 text-muted">
+        Not on the list? We often travel further. Call <a class="link font-semibold" href={site.phone.href}>{site.phone.display}</a> or
+        <a class="link font-semibold" href="#quote">{ctaLabel.toLowerCase()}</a> and we’ll let you know.
+      </p>
+    </div>
+
+    <div class="lg:col-span-7">
+      <ul class="columns-2 gap-8 sm:columns-3" aria-label="Towns we cover">
+        {site.areas.map((town) => {
+          const page = pageFor(town);
+          return (
+            <li class="flex min-h-11 break-inside-avoid items-center gap-2 border-b border-line">
+              <Icon name="pin" class="text-teal" />
+              {page ? (
+                <a href={`/areas/${page.id}/`} class="link font-semibold">{town}</a>
+              ) : (
+                <span>{town}</span>
+              )}
+            </li>
+          );
+        })}
+      </ul>
+      <p class="mt-6">
+        <a href="/areas/" class="link">See all the areas we cover</a>
+      </p>
+    </div>
+  </div>
+</section>

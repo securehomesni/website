@@ -1,0 +1,96 @@
+---
+/**
+ * Trust signals: accreditation, insurance and reviews as plain facts,
+ * then the business's promises, then real photos of work.
+ *
+ * PHOTOS: replace the files in src/assets/work/ with real installation photos.
+ * Never show house numbers, street names, number plates or a camera's blind spots.
+ */
+import { Image } from 'astro:assets';
+import { site } from '../../config/site';
+import Icon from '../ui/Icon.astro';
+import Placeholder from '../ui/Placeholder.astro';
+import workCctv from '../../assets/work/work-cctv.jpg';
+import workAlarm from '../../assets/work/work-alarm.jpg';
+import workRecorder from '../../assets/work/work-recorder.jpg';
+
+// PLACEHOLDER: real photos and accurate alt text describing what each one shows
+const photos = [
+  { src: workCctv, alt: 'Placeholder: a dome camera fitted neatly under the eaves of a gable wall', caption: 'Two-camera system covering a driveway' },
+  { src: workAlarm, alt: 'Placeholder: an alarm keypad mounted beside a front door', caption: 'Wireless alarm in a period terrace' },
+  { src: workRecorder, alt: 'Placeholder: labelled cables running into a recorder in an under-stairs cupboard', caption: 'Recorder and cabling tucked out of sight' },
+];
+---
+<section aria-labelledby="trust-title" class="py-section">
+  <div class="wrap">
+    <h2 id="trust-title" class="max-w-2xl text-3xl tracking-display">Why homeowners choose us</h2>
+
+    <dl class="mt-12 grid gap-px overflow-hidden rounded-md border border-line bg-line md:grid-cols-3">
+      <div class="bg-paper p-6 md:p-8">
+        <dt class="text-xl font-bold text-navy">SSAIB registered</dt>
+        <dd class="mt-3">
+          An independent body inspects our installations, paperwork and staff vetting every year.
+          Registration number <Placeholder note="SSAIB number">{site.ssaib.registrationNumber}</Placeholder>.
+          <a class="link mt-3 block" href={site.ssaib.url}>Check our registration</a>
+        </dd>
+      </div>
+      <div class="bg-paper p-6 md:p-8">
+        <dt class="text-xl font-bold text-navy">
+          <Placeholder note="Insurance amount">{site.insurance.publicLiability}</Placeholder> insured
+        </dt>
+        <dd class="mt-3">Full public liability insurance on every job, with certificates available on request.</dd>
+      </div>
+      <div class="bg-paper p-6 md:p-8">
+        <dt class="text-xl font-bold text-navy">
+          <Placeholder note="Real rating">{site.reviews.rating} out of 5</Placeholder>
+        </dt>
+        <dd class="mt-3">
+          From <Placeholder note="Real review count">{site.reviews.count}</Placeholder> reviews on {site.reviews.platform}, written by local homeowners.
+          <a class="link mt-3 inline-flex items-center gap-1.5" href={site.reviews.url}>
+            Read our reviews on {site.reviews.platform}<Icon name="external" class="size-4" /><span class="sr-only"> (opens the {site.reviews.platform} website)</span>
+          </a>
+        </dd>
+      </div>
+    </dl>
+
+    <div class="mt-16 grid gap-10 lg:grid-cols-12">
+      <h3 class="text-xl lg:col-span-4">What you can expect from us</h3>
+      <ul class="grid gap-x-10 gap-y-7 sm:grid-cols-2 lg:col-span-8">
+        {site.promises.map((p) => (
+          <li class="flex gap-3">
+            <Icon name="check" class="mt-1 text-teal-ink" />
+            <div>
+              <p class="font-semibold text-navy"><Placeholder note="Confirm promise">{p.title}</Placeholder></p>
+              <p class="mt-1 text-muted">{p.text}</p>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    <div class="mt-16">
+      <div class="flex flex-col gap-2 sm:flex-row sm:items-baseline sm:justify-between">
+        <h3 class="text-xl">Recent installations</h3>
+        <p class="text-sm text-muted">We never show house numbers or anything that identifies a customer’s home.</p>
+      </div>
+      <ul class="mt-6 grid gap-6 md:grid-cols-3">
+        {photos.map((p, i) => (
+          <li>
+            <figure>
+              <Image
+                src={p.src}
+                alt={p.alt}
+                widths={[400, 640, 960]}
+                sizes="(min-width: 76rem) 24rem, (min-width: 48rem) 31vw, 100vw"
+                class="aspect-[4/3] w-full rounded-md object-cover"
+                loading="lazy"
+                decoding="async"
+              />
+              <figcaption class="mt-3 text-sm text-muted">{p.caption}</figcaption>
+            </figure>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
+</section>

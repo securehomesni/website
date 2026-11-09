@@ -1,0 +1,59 @@
+---
+import { Image } from 'astro:assets';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHeader from '../components/PageHeader.astro';
+import CtaPanel from '../components/CtaPanel.astro';
+import { site } from '../config/site';
+import { breadcrumbSchema } from '../lib/schema';
+import team from '../assets/work/team.jpg';
+
+const crumbs = [
+  { name: 'Home', path: '/' },
+  { name: 'About us', path: '/about/' },
+];
+const siteUrl = Astro.site ?? new URL(Astro.url.origin);
+---
+<BaseLayout
+  title="About Us: Local Home Security Installers"
+  description={`Meet ${site.name}, a local, SSAIB-registered team installing CCTV and intruder alarms in homes across ${site.areaSummary}.`}
+  schema={[breadcrumbSchema(crumbs, siteUrl)]}
+>
+  <PageHeader
+    title="About us"
+    intro="A local team that surveys, installs and looks after every system ourselves."
+    breadcrumbs={crumbs}
+  />
+  <div class="wrap grid gap-12 py-section lg:grid-cols-12">
+    <div class="lg:col-span-8">
+      <!-- PLACEHOLDER: real team photo with accurate alt text -->
+      <Image
+        src={team}
+        alt="Placeholder: one of our engineers fitting an alarm keypad"
+        widths={[480, 800, 1200]}
+        sizes="(min-width: 76rem) 48rem, (min-width: 64rem) 64vw, 100vw"
+        class="aspect-[16/11] w-full rounded-md object-cover"
+      />
+      <div class="prose-content mt-10">
+        <!-- PLACEHOLDER: the real story. Who runs the business, how long, why. Keep it human and specific. -->
+        <p>
+          [Business name] was started in [year] by [name], an engineer with [number] years’ experience fitting alarms and CCTV
+          around [area]. We’re still a small, [family-run] business, and the person who surveys your home is part of the team
+          that installs it.
+        </p>
+        <h2>How we work</h2>
+        <ul>
+          <li>We only recommend what your home needs, and we’ll tell you if something isn’t worth the money.</li>
+          <li>Every quote is fixed and in writing.</li>
+          <li>We’re SSAIB registered, so our work and processes are independently inspected.</li>
+          <li>Every engineer is vetted and carries ID.</li>
+        </ul>
+        <h2>Accreditation and insurance</h2>
+        <p>
+          SSAIB registration number {site.ssaib.registrationNumber}. Public liability insurance of {site.insurance.publicLiability}.
+          {site.legalName} is registered in Northern Ireland, company number {site.companyNumber}.
+        </p>
+      </div>
+    </div>
+    <div class="lg:col-span-4"><CtaPanel /></div>
+  </div>
+</BaseLayout>

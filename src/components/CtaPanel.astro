@@ -1,0 +1,25 @@
+---
+/** Repeated call to action for inner pages (service, location and guide pages). */
+import { site, ctaLabel } from '../config/site';
+import Icon from './ui/Icon.astro';
+
+interface Props {
+  title?: string;
+  text?: string;
+}
+const {
+  title = 'Book a free home security survey',
+  text = 'An engineer visits, looks at your home with you and sends a fixed written quote. No charge and no obligation.',
+} = Astro.props;
+---
+<aside aria-labelledby="cta-panel-title" class="rounded-md border-t-4 border-teal bg-mint p-6 md:p-8">
+  <h2 id="cta-panel-title" class="text-xl">{title}</h2>
+  <p class="mt-3">{text}</p>
+  <div class="mt-6 flex flex-col gap-3">
+    <a href="/contact/#quote" class="btn btn-primary">{ctaLabel}</a>
+    <a href={site.phone.href} class="btn btn-secondary">
+      <Icon name="phone" />
+      <span>Call {site.phone.display}</span>
+    </a>
+  </div>
+</aside>

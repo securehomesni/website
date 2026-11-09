@@ -1,0 +1,28 @@
+{
+  "name": "securehome-ni",
+  "type": "module",
+  "version": "0.1.0",
+  "private": true,
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "check": "astro check",
+    "pages:dev": "npx wrangler pages dev dist",
+    "placeholders": "node scripts/find-placeholders.mjs"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "^3.6.0",
+    "@fontsource-variable/schibsted-grotesk": "^5.2.0",
+    "@tailwindcss/vite": "^4.1.0",
+    "astro": "^6.3.0",
+    "tailwindcss": "^4.1.0"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.4",
+    "typescript": "^5.9.0"
+  }
+}

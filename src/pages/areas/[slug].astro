@@ -1,0 +1,70 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import CtaPanel from '../../components/CtaPanel.astro';
+import { breadcrumbSchema, serviceSchema } from '../../lib/schema';
+
+export async function getStaticPaths() {
+  const locations = await getCollection('locations');
+  return locations.map((entry) => ({ params: { slug: entry.id }, props: { entry } }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const services = (await getCollection('services')).sort((a, b) => a.data.order - b.data.order);
+const locations = await getCollection('locations');
+const pageFor = (town: string) => locations.find((l) => l.data.name.toLowerCase() === town.toLowerCase());
+
+const path = `/areas/${entry.id}/`;
+const crumbs = [
+  { name: 'Home', path: '/' },
+  { name: 'Areas we cover', path: '/areas/' },
+  { name: entry.data.name, path },
+];
+const siteUrl = Astro.site ?? new URL(Astro.url.origin);
+---
+<BaseLayout
+  title={entry.data.metaTitle}
+  description={entry.data.metaDescription}
+  schema={[
+    breadcrumbSchema(crumbs, siteUrl),
+    serviceSchema(
+      { name: `Home security installation in ${entry.data.name}`, description: entry.data.intro, path, areas: [entry.data.name] },
+      siteUrl,
+    ),
+  ]}
+>
+  <PageHeader title={`CCTV and alarm installers in ${entry.data.name}`} intro={entry.data.intro} breadcrumbs={crumbs} />
+  <div class="wrap grid gap-12 py-section lg:grid-cols-12">
+    <div class="lg:col-span-8">
+      <article class="prose-content">
+        <Content />
+      </article>
+
+      <h2 class="mt-14 text-xl">What we install in {entry.data.name}</h2>
+      <ul class="mt-4 grid gap-x-8 gap-y-2 sm:grid-cols-2">
+        {services.map((s) => (
+          <li><a class="link inline-flex min-h-10 items-center font-semibold" href={`/services/${s.id}/`}>{s.data.title}</a></li>
+        ))}
+      </ul>
+
+      {entry.data.nearby.length > 0 && (
+        <>
+          <h2 class="mt-12 text-xl">Nearby areas</h2>
+          <ul class="mt-4 flex flex-wrap gap-x-6 gap-y-2">
+            {entry.data.nearby.map((town) => {
+              const page = pageFor(town);
+              return <li>{page ? <a class="link inline-flex min-h-10 items-center" href={`/areas/${page.id}/`}>{town}</a> : <span class="inline-flex min-h-10 items-center">{town}</span>}</li>;
+            })}
+          </ul>
+        </>
+      )}
+    </div>
+    <div class="lg:col-span-4">
+      <div class="lg:sticky lg:top-[calc(var(--header-height)+2rem)]">
+        <CtaPanel title={`Book a free survey in ${entry.data.name}`} />
+      </div>
+    </div>
+  </div>
+</BaseLayout>

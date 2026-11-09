@@ -1,0 +1,39 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHeader from '../components/PageHeader.astro';
+import QuoteSection from '../components/QuoteSection.astro';
+import { site } from '../config/site';
+import { breadcrumbSchema } from '../lib/schema';
+
+const crumbs = [
+  { name: 'Home', path: '/' },
+  { name: 'Contact', path: '/contact/' },
+];
+const siteUrl = Astro.site ?? new URL(Astro.url.origin);
+---
+<BaseLayout
+  title="Contact Us and Book a Free Survey"
+  description={`Book a free home security survey or ask a question. Call ${site.phone.display} or send us your details and we’ll call you back.`}
+  quoteHref="#quote"
+  businessSchema
+  schema={[breadcrumbSchema(crumbs, siteUrl)]}
+>
+  <PageHeader
+    title="Contact us"
+    intro={`Call ${site.phone.display}, email us, or fill in the form below and we’ll call you back within one working day.`}
+    breadcrumbs={crumbs}
+  />
+  <!-- Shown by script if the no-JavaScript form post fails (redirects here with ?error=1) -->
+  <div class="wrap" hidden data-send-error>
+    <p role="alert" class="mt-8 rounded-md border-2 border-error bg-error-tint p-5 font-semibold text-error">
+      Your request wasn’t sent. Please try again, or call us on {site.phone.display}.
+    </p>
+  </div>
+  <QuoteSection />
+</BaseLayout>
+
+<script>
+  if (new URLSearchParams(location.search).has('error')) {
+    document.querySelector<HTMLElement>('[data-send-error]')?.removeAttribute('hidden');
+  }
+</script>
