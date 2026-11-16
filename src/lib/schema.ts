@@ -50,7 +50,7 @@ export function localBusinessSchema(siteUrl: URL) {
         url: 'https://www.ssaib.org/',
       },
     },
-    knowsAbout: ['CCTV installation', 'Intruder alarms', 'Home security'],
+    knowsAbout: ['CCTV installation', 'Intruder alarms', 'Security lighting', 'Home security'],
     ...(sameAs.length ? { sameAs } : {}),
     // Note: no aggregateRating. Google ignores self-published review markup for
     // LocalBusiness, and ratings must never be made up.

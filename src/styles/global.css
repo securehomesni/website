@@ -123,6 +123,11 @@
     outline-color: var(--color-teal-soft);
   }
 
+  /* A light panel inside a dark section (e.g. the form) goes back to light-background colours */
+  .on-dark .on-light :focus-visible {
+    outline-color: var(--color-teal-ink);
+  }
+
   ::selection {
     background-color: var(--color-mint);
     color: var(--color-navy);
@@ -229,6 +234,12 @@
   }
   .on-dark .link:hover {
     color: var(--color-white);
+  }
+  .on-dark .on-light .link {
+    color: var(--color-teal-ink);
+  }
+  .on-dark .on-light .link:hover {
+    color: var(--color-navy);
   }
 
   /* Form fields ---------------------------------------------------------- */

@@ -17,7 +17,8 @@ export const site = {
   legalName: 'Secure Home NI Ltd', // PLACEHOLDER
   companyNumber: 'NI000000', // PLACEHOLDER: Companies House number, or remove if a sole trader
   description:
-    'SSAIB-registered CCTV and intruder alarm installers for homes in Belfast and across Northern Ireland.', // PLACEHOLDER: adjust to real service area
+    'SSAIB-registered installers of CCTV, intruder alarms and security lighting for homes in Belfast and across Northern Ireland.', // PLACEHOLDER: adjust to real service area
+  established: '2010', // PLACEHOLDER: year the business started
 
   // Ofcom reserves 028 9649 6000–6999 for drama, so this cannot ring a real person.
   phone: {
@@ -85,6 +86,20 @@ export const site = {
     { title: 'Help when you need it', text: 'Faults reported before noon are usually looked at the same working day.' }, // PLACEHOLDER
     { title: 'Two-year warranty', text: 'On all equipment and workmanship, with a simple number to call.' }, // PLACEHOLDER
   ],
+
+  // Homepage bundle offer. Set `show: false` to hide the section.
+  bundle: {
+    show: true,
+    name: 'Complete home security bundle',
+    price: '£x', // PLACEHOLDER: the bundle price, e.g. '£1,295'
+    priceNote: 'fully installed, including VAT', // PLACEHOLDER: confirm VAT and what the price covers
+    includes: [
+      { title: 'CCTV', text: '[2] HD cameras with night vision, a recorder and phone viewing' }, // PLACEHOLDER
+      { title: 'Intruder alarm', text: 'Wireless alarm with [3] sensors, a bell box and app control' }, // PLACEHOLDER
+      { title: 'Security light', text: '[1] LED floodlight with a motion sensor, positioned to light your doors or drive' }, // PLACEHOLDER
+    ],
+    terms: 'Typical three-bedroom home. Larger homes and extra equipment are quoted after your free survey.', // PLACEHOLDER
+  },
 
   social: {
     facebook: '', // PLACEHOLDER: full URL or leave empty to hide

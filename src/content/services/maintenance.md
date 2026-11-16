@@ -1,10 +1,10 @@
 ---
-title: Maintenance and servicing
-shortTitle: Servicing and repairs
-summary: Annual servicing and repairs for alarms and CCTV, including systems we didn't install.
+title: Repairs, upgrades and servicing
+shortTitle: Repairs and servicing
+summary: Repairs, upgrades and regular servicing for CCTV, alarms and security lighting, including systems we didn't install.
 metaTitle: Alarm and CCTV Servicing and Repairs in Northern Ireland
 metaDescription: Annual servicing, battery replacement and repairs for home alarms and CCTV systems, including systems fitted by other companies.
-order: 5
+order: 4
 placeholder: true
 ---
 

@@ -10,9 +10,9 @@ const { quoteHref = '/contact/#quote' } = Astro.props;
 const path = Astro.url.pathname;
 const isCurrent = (href: string) => path === href || (href !== '/' && path.startsWith(href));
 ---
-<header class="sticky top-0 z-40 border-b border-line bg-paper/95 backdrop-blur-sm supports-[backdrop-filter]:bg-paper/85">
+<header class="on-dark sticky top-0 z-40 border-b border-white/10 bg-navy text-paper">
   <div class="wrap flex h-(--header-height) items-center justify-between gap-4 xl:gap-6">
-    <Logo />
+    <Logo tone="light" />
 
     <nav aria-label="Main" class="hidden lg:block">
       <ul class="flex items-center gap-0.5 xl:gap-1">
@@ -21,7 +21,7 @@ const isCurrent = (href: string) => path === href || (href !== '/' && path.start
             <a
               href={item.href}
               aria-current={isCurrent(item.href) ? 'page' : undefined}
-              class="inline-flex min-h-11 items-center whitespace-nowrap rounded-sm px-2.5 font-medium text-ink hover:text-teal-ink aria-[current=page]:text-navy aria-[current=page]:underline aria-[current=page]:decoration-teal aria-[current=page]:decoration-2 aria-[current=page]:underline-offset-8"
+              class="inline-flex min-h-11 items-center whitespace-nowrap rounded-sm px-2.5 font-medium text-paper/90 hover:text-white hover:underline hover:underline-offset-8 aria-[current=page]:text-white aria-[current=page]:underline aria-[current=page]:decoration-teal-soft aria-[current=page]:decoration-2 aria-[current=page]:underline-offset-8"
             >
               {item.label}
             </a>
@@ -33,16 +33,16 @@ const isCurrent = (href: string) => path === href || (href !== '/' && path.start
     <div class="flex items-center gap-2">
       <a
         href={site.phone.href}
-        class="hidden min-h-11 items-center gap-2 whitespace-nowrap rounded-sm px-2 font-semibold text-navy hover:text-teal-ink md:inline-flex lg:hidden xl:inline-flex"
+        class="hidden min-h-11 items-center gap-2 whitespace-nowrap rounded-sm px-2 font-semibold text-white hover:text-teal-soft md:inline-flex lg:hidden xl:inline-flex"
       >
-        <Icon name="phone" class="text-teal" />
+        <Icon name="phone" class="text-teal-soft" />
         <span><span class="sr-only">Call us on </span>{site.phone.display}</span>
       </a>
-      <a href={quoteHref} class="btn btn-primary hidden min-h-11 py-2 sm:inline-flex">{ctaLabel}</a>
+      <a href={quoteHref} class="btn btn-on-dark hidden min-h-11 py-2 sm:inline-flex">{ctaLabel}</a>
 
       <button
         type="button"
-        class="inline-flex min-h-11 min-w-11 items-center gap-2 rounded-sm border border-line-strong px-3 font-semibold text-navy lg:hidden"
+        class="inline-flex min-h-11 min-w-11 items-center gap-2 rounded-sm border border-paper/50 px-3 font-semibold text-white lg:hidden"
         aria-expanded="false"
         aria-controls="mobile-menu"
         data-menu-toggle
@@ -56,15 +56,15 @@ const isCurrent = (href: string) => path === href || (href !== '/' && path.start
     </div>
   </div>
 
-  <div id="mobile-menu" class="border-t border-line bg-paper lg:hidden" hidden data-menu>
+  <div id="mobile-menu" class="border-t border-white/10 bg-navy lg:hidden" hidden data-menu>
     <nav aria-label="Main (mobile)" class="wrap py-4">
-      <ul class="divide-y divide-line">
+      <ul class="divide-y divide-white/10">
         {nav.map((item) => (
           <li>
             <a
               href={item.href}
               aria-current={isCurrent(item.href) ? 'page' : undefined}
-              class="flex min-h-12 items-center text-lg font-semibold text-navy hover:text-teal-ink aria-[current=page]:text-teal-ink"
+              class="flex min-h-12 items-center text-lg font-semibold text-white hover:text-teal-soft aria-[current=page]:text-teal-soft"
             >
               {item.label}
             </a>
@@ -72,7 +72,7 @@ const isCurrent = (href: string) => path === href || (href !== '/' && path.start
         ))}
       </ul>
       <div class="mt-4 grid gap-3 pb-2 sm:hidden">
-        <a href={quoteHref} class="btn btn-primary w-full">{ctaLabel}</a>
+        <a href={quoteHref} class="btn btn-on-dark w-full">{ctaLabel}</a>
       </div>
     </nav>
   </div>

@@ -24,7 +24,7 @@ An alarm should fit the way you live. On the survey we look at how you move arou
 
 ## Monitoring options
 
-You can keep things simple with a bells-only system, get alerts on your phone, or [add professional monitoring](/services/remote-monitoring/). We'll explain the cost and what each option does before you decide.
+You can keep things simple with a bells-only system, get alerts on your phone, or [add professional monitoring]. We'll explain the cost and what each option does before you decide.
 
 ## Servicing
 

@@ -2,24 +2,25 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/home/Hero.astro';
 import Services from '../components/home/Services.astro';
+import Bundle from '../components/home/Bundle.astro';
 import Process from '../components/home/Process.astro';
-import Trust from '../components/home/Trust.astro';
 import Areas from '../components/home/Areas.astro';
-import Faq from '../components/home/Faq.astro';
 import QuoteSection from '../components/QuoteSection.astro';
 import { site } from '../config/site';
 ---
 <BaseLayout
-  title={`CCTV and Alarm Installers in Belfast | ${site.name}`}
-  description="Local, SSAIB-registered installers of home CCTV and intruder alarms in Belfast and across Northern Ireland. Book a free home security survey."
+  title={`CCTV, Alarm and Security Lighting Installers in Belfast | ${site.name}`}
+  description="Local, SSAIB-registered installers of home CCTV, intruder alarms and security lighting in Belfast and across Northern Ireland. Repairs, upgrades and servicing too."
   quoteHref="#quote"
   businessSchema
 >
   <Hero />
   <Services />
+  <Bundle />
   <Process />
-  <Trust />
   <Areas />
-  <Faq />
-  <QuoteSection />
+  <QuoteSection
+    tone="dark"
+    intro="Whether it’s a new system, a repair or a service, tell us what you need and we’ll call you back within one working day to arrange a visit."
+  />
 </BaseLayout>

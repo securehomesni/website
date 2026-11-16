@@ -53,10 +53,10 @@ With `DEV_MODE=true` and no Resend key, submissions are printed to the terminal 
     │   ├── locations/          One file per area page
     │   └── guides/             Guides / blog posts
     ├── content.config.ts       Collection schemas (frontmatter fields)
-    ├── data/faqs.ts            ★ Homepage FAQs
+    ├── data/faqs.ts            ★ FAQs (shown on the contact page)
     ├── assets/work/            ★ Photos (optimised at build time)
     ├── components/
-    │   ├── home/               Homepage sections (Hero, Services, Process, Trust, Areas, Faq)
+    │   ├── home/               Homepage sections (Hero, Services, Bundle, Process, Areas) and Faq
     │   ├── forms/QuoteForm.astro
     │   ├── ui/                 Icon, Placeholder
     │   └── Header, Footer, MobileCallBar, PageHeader, CtaPanel, QuoteSection, SEO, Logo
@@ -95,11 +95,14 @@ Copy an existing Markdown file in the matching `src/content/` folder and change 
 - **Locations:** a town in `site.areas` links to its page automatically when the location file's `name` matches. Write genuinely local copy for each; thin, near-identical location pages can hurt rankings.
 - Remove `placeholder: true` once real copy is in.
 
+### Bundle offer
+`bundle` in `src/config/site.ts`: price, what's included and terms. Set `show: false` to hide the section.
+
 ### FAQs
-`src/data/faqs.ts`. Answers can include links.
+`src/data/faqs.ts`. Answers can include links. They appear on the contact page.
 
 ### Photos
-Replace the files in `src/assets/work/` (keep the names, or update the imports in `components/home/Trust.astro` and `pages/about.astro`). Astro's `<Image />` resizes and converts them to modern formats at build time. Upload large originals (at least 1600px wide).
+Replace the files in `src/assets/work/` (keep the names, or update the imports in `components/home/Hero.astro`, `components/home/Services.astro` and `pages/about.astro`). The hero photo (`hero.jpg`) should be wide, at least 2400px, with a fairly plain left side where the text sits. Astro's `<Image />` resizes and converts them to modern formats at build time. Upload large originals (at least 1600px wide).
 
 Write alt text that describes what the photo shows. **Never publish photos showing house numbers, street names, number plates, or where a camera can't see.**
 

@@ -1,5 +1,5 @@
 /**
- * Homepage FAQs. Answers are HTML so they can contain links.
+ * FAQs, shown on the contact page. Answers are HTML so they can contain links.
  * Keep answers short; link to a guide for anything longer.
  */
 export const ICO_HOME_CCTV_URL =

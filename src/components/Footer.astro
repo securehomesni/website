@@ -6,7 +6,7 @@ import Logo from './Logo.astro';
 const services = (await getCollection('services')).sort((a, b) => a.data.order - b.data.order);
 const year = new Date().getFullYear();
 ---
-<footer class="on-dark bg-navy text-paper">
+<footer class="on-dark border-t border-white/15 bg-navy text-paper">
   <div class="wrap grid gap-12 py-16 md:grid-cols-12 md:gap-8">
     <div class="md:col-span-4">
       <Logo tone="light" />

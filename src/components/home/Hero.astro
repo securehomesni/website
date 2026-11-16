@@ -1,76 +1,63 @@
 ---
 /**
- * Hero: headline, supporting line, primary CTA and phone number on the left.
- * On the right, a "survey sheet" sets out exactly what the free survey covers,
- * which answers the question most people have before booking.
- * The hero is text-only so it paints fast (good LCP).
+ * Hero: navy, full width, with a photo behind a navy overlay.
+ * A short headline, one supporting line, the two main actions and trust facts.
+ *
+ * PHOTO: replace src/assets/work/hero.jpg with a real, wide photo (at least 2400px wide).
+ * Choose one where the left side is fairly plain, as the text sits there.
+ * Never show a house number, street name or number plate.
+ * A still photo is used rather than video: WCAG and the brief rule out autoplaying media.
  */
+import { Image } from 'astro:assets';
 import { site, ctaLabel } from '../../config/site';
 import Icon from '../ui/Icon.astro';
 import Placeholder from '../ui/Placeholder.astro';
-
-const surveyCovers = [
-  'A walk round every door, window and outbuilding with you',
-  'Where cameras can see what you need, and nothing they shouldn’t',
-  'Wi-Fi strength and power at each spot',
-  'Alarm sensors planned around pets and how you use the house',
-  'Your options explained, with no pressure to decide on the day',
-];
+import heroPhoto from '../../assets/work/hero.jpg';
 ---
-<section aria-labelledby="hero-title" class="border-b border-line">
-  <div class="wrap grid gap-12 py-14 md:py-20 lg:grid-cols-12 lg:items-center lg:gap-10 lg:py-24">
-    <div class="lg:col-span-7">
-      <h1 id="hero-title" class="max-w-[13ch] text-display font-bold tracking-display text-navy">
-        Home security, fitted properly and explained plainly.
+<section aria-labelledby="hero-title" class="on-dark relative isolate overflow-hidden bg-navy text-paper">
+  <Image
+    src={heroPhoto}
+    alt=""
+    widths={[800, 1280, 1920, 2400]}
+    sizes="100vw"
+    loading="eager"
+    fetchpriority="high"
+    class="absolute inset-0 -z-20 h-full w-full object-cover"
+  />
+  <!-- Keeps text readable over any photo: solid on small screens, fading to the right on large ones -->
+  <div class="absolute inset-0 -z-10 bg-navy/85 lg:bg-transparent lg:bg-linear-to-r lg:from-navy lg:from-40% lg:via-navy/85 lg:to-navy/40" aria-hidden="true"></div>
+
+  <div class="wrap flex min-h-[32rem] items-center py-16 md:py-20 lg:min-h-[40rem] lg:py-24">
+    <div class="max-w-2xl">
+      <h1 id="hero-title" class="max-w-[12ch] text-display font-bold tracking-display text-white">
+        Your home, properly protected.
       </h1>
-      <p class="mt-6 max-w-xl text-lg text-ink">
-        CCTV and intruder alarms for homes across
+      <p class="mt-6 max-w-xl text-lg text-paper/90">
+        CCTV, intruder alarms and security lighting for homes across
         <Placeholder note="Service area summary">{site.areaSummary}</Placeholder>.
-        Local, SSAIB-registered engineers and a fixed written quote before any work starts.
+        Installed, repaired, upgraded and serviced by our own local, SSAIB-registered engineers.
       </p>
 
-      <div class="mt-9 flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-6">
-        <a href="#quote" class="btn btn-primary px-7 text-lg">{ctaLabel}</a>
-        <a href={site.phone.href} class="group inline-flex min-h-12 items-center gap-2.5 text-lg font-semibold text-navy">
-          <Icon name="phone" class="text-teal" />
-          <span>
-            or call <span class="underline decoration-teal decoration-2 underline-offset-4 group-hover:text-teal-ink">{site.phone.display}</span>
-          </span>
+      <div class="mt-9 flex flex-col gap-3 sm:flex-row sm:gap-4">
+        <a href="#quote" class="btn btn-on-dark px-7 text-lg">{ctaLabel}</a>
+        <a href={site.phone.href} class="btn border-paper/70 px-6 text-lg text-white hover:bg-white hover:text-navy">
+          <Icon name="phone" />
+          <span>Call {site.phone.display}</span>
         </a>
       </div>
 
-      <ul class="mt-10 flex flex-wrap gap-x-7 gap-y-3 text-sm text-muted" aria-label="Why you can trust us">
-        <li class="inline-flex items-center gap-2"><Icon name="check" class="text-teal-ink" />SSAIB registered</li>
-        <li class="inline-flex items-center gap-2"><Icon name="check" class="text-teal-ink" />
-          <Placeholder note="Insurance amount">{site.insurance.publicLiability}</Placeholder> public liability cover
+      <ul class="mt-10 grid gap-x-8 gap-y-3 border-t border-white/15 pt-6 text-paper/90 sm:grid-cols-2" aria-label="Why you can trust us">
+        <li class="flex items-center gap-2.5"><Icon name="check" class="text-teal-soft" />
+          <span>Local since <Placeholder note="Year established">{site.established}</Placeholder></span>
         </li>
-        <li class="inline-flex items-center gap-2"><Icon name="check" class="text-teal-ink" />
-          <Placeholder note="Real Google rating and count">Rated {site.reviews.rating} out of 5 from {site.reviews.count} {site.reviews.platform} reviews</Placeholder>
+        <li class="flex items-center gap-2.5"><Icon name="check" class="text-teal-soft" />SSAIB registered installer</li>
+        <li class="flex items-center gap-2.5"><Icon name="check" class="text-teal-soft" />
+          <span><Placeholder note="Insurance amount">{site.insurance.publicLiability}</Placeholder> public liability cover</span>
+        </li>
+        <li class="flex items-center gap-2.5"><Icon name="check" class="text-teal-soft" />
+          <span><Placeholder note="Real Google rating and count">Rated {site.reviews.rating} out of 5 on {site.reviews.platform}</Placeholder></span>
         </li>
       </ul>
-    </div>
-
-    <div class="lg:col-span-5">
-      <div class="rounded-md border border-line bg-white">
-        <div class="flex items-baseline justify-between gap-4 border-b border-line px-6 py-4">
-          <h2 id="survey-sheet-title" class="text-lg">What your free survey covers</h2>
-          <p class="shrink-0 text-sm text-muted">About 45 minutes</p>
-        </div>
-        <ul class="px-6 py-2">
-          {surveyCovers.map((item) => (
-            <li class="flex gap-3.5 border-b border-dashed border-line py-3.5 last:border-b-0">
-              <span class="mt-0.5 grid size-5 shrink-0 place-items-center rounded-sm border-[1.5px] border-teal text-teal-ink" aria-hidden="true">
-                <Icon name="check" class="size-3.5" />
-              </span>
-              <span>{item}</span>
-            </li>
-          ))}
-        </ul>
-        <p class="rounded-b-md bg-mint px-6 py-4 text-sm text-navy">
-          Afterwards you get a fixed written quote, usually within
-          <Placeholder note="Quote turnaround">two working days</Placeholder>.
-        </p>
-      </div>
     </div>
   </div>
 </section>

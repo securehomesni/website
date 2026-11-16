@@ -1,62 +1,89 @@
 ---
 /**
- * Services overview. Featured services (CCTV and alarms) get full rows;
- * the rest sit in a compact list underneath, so the two main services lead.
- * Content comes from src/content/services/.
+ * Services: the three core services (featured: true in src/content/services/),
+ * each with a photo, then the kinds of work we do on any system.
+ *
+ * PHOTOS: replace the files in src/assets/work/ with real photos of your work.
  */
+import { Image } from 'astro:assets';
 import { getCollection } from 'astro:content';
-import { ctaLabel } from '../../config/site';
+import type { ImageMetadata } from 'astro';
+import workCctv from '../../assets/work/work-cctv.jpg';
+import workAlarm from '../../assets/work/work-alarm.jpg';
+import workLighting from '../../assets/work/work-lighting.jpg';
 
-const all = (await getCollection('services')).sort((a, b) => a.data.order - b.data.order);
-const featured = all.filter((s) => s.data.featured);
-const others = all.filter((s) => !s.data.featured);
+// Photo and alt text for each featured service, by file name in src/content/services/
+const photos: Record<string, { src: ImageMetadata; alt: string }> = {
+  cctv: { src: workCctv, alt: 'Placeholder: a dome camera fitted neatly under the eaves of a gable wall' },
+  'intruder-alarms': { src: workAlarm, alt: 'Placeholder: an alarm keypad mounted beside a front door' },
+  'security-lighting': { src: workLighting, alt: 'Placeholder: an LED security light above a driveway at dusk' },
+};
+
+const services = (await getCollection('services'))
+  .filter((s) => s.data.featured)
+  .sort((a, b) => a.data.order - b.data.order);
+
+// "CCTV installation" -> "CCTV installation", "Intruder alarms" -> "intruder alarms"
+const lowerFirst = (t: string) => t.replace(/^\S+/, (w) => (w === w.toUpperCase() ? w : w.toLowerCase()));
+
+const workTypes = [
+  { title: 'New installations', text: 'Designed around your home after a free survey.' },
+  { title: 'Repairs', text: 'Faults, false alarms and cameras that have stopped recording.' },
+  { title: 'Upgrades', text: 'Add cameras or sensors, or replace an old system with a modern one.' },
+  { title: 'Servicing', text: 'Regular checks that keep everything working and insurers happy.' },
+];
 ---
 <section aria-labelledby="services-title" class="py-section">
-  <div class="wrap grid gap-10 lg:grid-cols-12 lg:gap-10">
-    <div class="lg:col-span-4">
-      <h2 id="services-title" class="text-3xl tracking-display">What we install</h2>
-      <p class="mt-5 max-w-sm text-muted">
-        Systems chosen for your home rather than sold from a package list. Every installation starts with a free survey.
-      </p>
-      <p class="mt-6">
-        <a href="#quote" class="link font-semibold">Not sure what you need? {ctaLabel}</a>
+  <div class="wrap">
+    <div class="grid gap-6 lg:grid-cols-12 lg:items-end">
+      <h2 id="services-title" class="text-3xl tracking-display lg:col-span-6">Home security services</h2>
+      <p class="max-w-xl text-lg text-muted lg:col-span-6">
+        Three systems that work best together. We fit them, fix them, upgrade them and look after them, including systems we didn’t install.
       </p>
     </div>
 
-    <div class="lg:col-span-8">
-      <ul>
-        {featured.map((s) => (
-          <li class="grid gap-3 border-t-2 border-navy py-8 sm:grid-cols-[minmax(0,15rem)_1fr] sm:gap-10">
-            <h3 class="text-2xl tracking-display">
+    <ul class="mt-12 grid gap-12 md:grid-cols-3 md:gap-8">
+      {services.map((s) => {
+        const photo = photos[s.id];
+        return (
+          <li class="flex flex-col">
+            {photo && (
+              <Image
+                src={photo.src}
+                alt={photo.alt}
+                widths={[400, 640, 960]}
+                sizes="(min-width: 76rem) 24rem, (min-width: 48rem) 31vw, 100vw"
+                class="aspect-[4/3] w-full rounded-md object-cover"
+                loading="lazy"
+              />
+            )}
+            <h3 class="mt-6 border-t-2 border-navy pt-4 text-2xl tracking-display">
               <a href={`/services/${s.id}/`} class="hover:text-teal-ink hover:underline hover:decoration-2 hover:underline-offset-4">
                 {s.data.title}
               </a>
             </h3>
-            <div>
-              <p class="text-lg">{s.data.summary}</p>
-              <p class="mt-4">
-                <a href={`/services/${s.id}/`} class="link font-semibold">
-                  How we install {s.data.shortTitle === 'CCTV' ? 'CCTV' : s.data.shortTitle.toLowerCase()}
-                </a>
-              </p>
-            </div>
+            <p class="mt-3">{s.data.summary}</p>
+            <p class="mt-auto pt-4">
+              <a href={`/services/${s.id}/`} class="link font-semibold">More about {lowerFirst(s.data.title)}</a>
+            </p>
+          </li>
+        );
+      })}
+    </ul>
+
+    <div class="mt-16 rounded-md border border-line bg-white">
+      <h3 class="border-b border-line px-6 py-4 text-lg md:px-8">For every system, we do</h3>
+      <ul class="grid gap-px bg-line sm:grid-cols-2 lg:grid-cols-4">
+        {workTypes.map((w) => (
+          <li class="bg-white px-6 py-5 md:px-8">
+            <p class="font-semibold text-navy">{w.title}</p>
+            <p class="mt-1 text-sm text-muted">{w.text}</p>
           </li>
         ))}
       </ul>
-
-      {others.length > 0 && (
-        <div class="border-t-2 border-navy pt-8">
-          <h3 class="text-lg">Also available</h3>
-          <ul class="mt-4 grid gap-x-8 gap-y-6 sm:grid-cols-3">
-            {others.map((s) => (
-              <li>
-                <a href={`/services/${s.id}/`} class="link font-semibold">{s.data.shortTitle}</a>
-                <p class="mt-1 text-sm text-muted">{s.data.summary}</p>
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
+      <p class="rounded-b-md border-t border-line bg-mint px-6 py-4 text-sm md:px-8">
+        Need a repair or service? <a href="/services/maintenance/" class="link font-semibold">Repairs, upgrades and servicing</a>
+      </p>
     </div>
   </div>
 </section>
