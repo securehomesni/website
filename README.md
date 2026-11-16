@@ -1,4 +1,4 @@
-# Secure Home NI website
+# Secure Homes NI website
 
 Marketing website for a home security installer (CCTV and intruder alarms), built with Astro, Tailwind CSS v4 and TypeScript, and deployed as a static site on Cloudflare Pages. The quote form is handled by a Cloudflare Pages Function with Turnstile spam protection.
 
@@ -97,7 +97,7 @@ Copy an existing Markdown file in the matching `src/content/` folder and change 
 `bundle` in `src/config/site.ts`: price, what's included and terms. Set `show: false` to hide the section.
 
 ### Christmas effects
-The homepage hero shows gentle snowfall and a Secure Home NI sleigh (drawn in `components/home/Christmas.astro`) between the dates in `christmas` in `src/config/site.ts` (15 November to 6 January by default). It turns itself on and off each year with no rebuild. It never runs for visitors who have reduced motion switched on, and has a pause button. Set `show: false` to remove it.
+The homepage hero shows gentle snowfall and a Secure Homes NI sleigh (drawn in `components/home/Christmas.astro`) between the dates in `christmas` in `src/config/site.ts` (15 November to 6 January by default). It turns itself on and off each year with no rebuild. It never runs for visitors who have reduced motion switched on, and has a pause button. Set `show: false` to remove it.
 
 ### FAQs
 `src/data/faqs.ts`. Answers can include links. They appear on the contact page.

@@ -14,13 +14,13 @@ const markColour = tone === 'light' ? 'text-teal-soft' : 'text-teal';
 ---
 <a
   href="/"
-  class={`inline-flex min-h-11 items-center gap-2.5 font-bold tracking-tight ${textColour}`}
+  class={`inline-flex min-h-11 items-center gap-2 font-bold min-[400px]:gap-2.5 tracking-tight ${textColour}`}
   aria-current={isHome ? 'page' : undefined}
 >
-  <svg class={`size-8 ${markColour}`} viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+  <svg class={`size-7 shrink-0 min-[400px]:size-8 ${markColour}`} viewBox="0 0 32 32" aria-hidden="true" focusable="false">
     <path d="M4 15 16 5l12 10" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
     <path d="M8 13.5V27h16V13.5" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round" />
     <circle cx="16" cy="19" r="3.25" fill="currentColor" />
   </svg>
-  <span class="whitespace-nowrap text-lg leading-none">{site.name}</span>
+  <span class="whitespace-nowrap text-base leading-none min-[400px]:text-lg">{site.name}</span>
 </a>

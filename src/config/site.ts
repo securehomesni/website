@@ -13,7 +13,7 @@
  */
 
 export const site = {
-  name: 'Secure Home NI', // PLACEHOLDER: trading name exactly as on Google Business Profile
+  name: 'Secure Homes NI', // PLACEHOLDER: trading name exactly as on Google Business Profile
   // The company behind the brand, shown in the footer
   tradingAs: {
     name: 'Unified Integrated Systems',
@@ -93,7 +93,7 @@ export const site = {
     { name: 'Pyronix', role: 'intruder alarm specialists', text: 'Wired and wireless alarms, with the HomeControl+ app to set and unset from anywhere.' },
   ],
 
-  // Christmas effects in the homepage hero: falling snow and a Secure Home NI sleigh. It only runs between these dates (month-day),
+  // Christmas effects in the homepage hero: falling snow and a Secure Homes NI sleigh. It only runs between these dates (month-day),
   // checked in the visitor's browser, so it switches itself on and off each year
   // without a rebuild. Set show: false to turn it off completely.
   christmas: {
