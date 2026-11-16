@@ -13,15 +13,15 @@ const crumbs = [
 const siteUrl = Astro.site ?? new URL(Astro.url.origin);
 ---
 <BaseLayout
-  title="Contact Us and Book a Free Survey"
-  description={`Book a free home security survey or ask a question. Call ${site.phone.display} or send us your details and we’ll call you back.`}
+  title="Contact Us: Call or Request a Call Back"
+  description={`Call ${site.phone.display} or request a call back for a free, no-obligation quote for CCTV, alarms or security lighting.`}
   quoteHref="#quote"
   businessSchema
   schema={[breadcrumbSchema(crumbs, siteUrl)]}
 >
   <PageHeader
     title="Contact us"
-    intro={`Call ${site.phone.display}, email us, or fill in the form below and we’ll call you back within one working day.`}
+    intro={`Call ${site.phone.display}, or leave your details below and we’ll call you back within one working day.`}
     breadcrumbs={crumbs}
   />
   <!-- Shown by script if the no-JavaScript form post fails (redirects here with ?error=1) -->

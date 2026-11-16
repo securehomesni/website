@@ -29,7 +29,6 @@ export const site = {
     href: 'tel:+442896496000', // PLACEHOLDER: international format, no spaces
     e164: '+442896496000', // PLACEHOLDER
   },
-  email: 'hello@example.co.uk', // PLACEHOLDER
 
   // Service-area businesses can hide the street address (showStreet: false),
   // which matches how Google Business Profile handles them.
@@ -86,10 +85,10 @@ export const site = {
     { title: 'Two-year warranty', text: 'On all equipment and workmanship, with a simple number to call.' }, // PLACEHOLDER
   ],
 
-  // Snow falling in the homepage hero. It only runs between these dates (month-day),
+  // Christmas effects in the homepage hero: falling snow and a Secure Home NI sleigh. It only runs between these dates (month-day),
   // checked in the visitor's browser, so it switches itself on and off each year
   // without a rebuild. Set show: false to turn it off completely.
-  snow: {
+  christmas: {
     show: true,
     from: '11-15',
     until: '01-06',
@@ -141,4 +140,7 @@ export const legalNav = [
   { label: 'Accessibility statement', href: '/accessibility-statement/' },
 ] as const;
 
-export const ctaLabel = 'Book a free survey';
+// The main call to action, used on buttons across the site.
+// Buttons link to the call-back form on the contact page.
+export const ctaLabel = 'Request a call back';
+export const ctaHref = '/contact/#quote';

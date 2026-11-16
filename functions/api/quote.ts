@@ -103,8 +103,7 @@ function validate(d: { name: string; phone: string; email: string; postcode: str
   if (!d.phone) errors.phone = 'Enter your phone number';
   else if (!/^[0-9 +()-]+$/.test(d.phone) || d.phone.replace(/\D/g, '').length < 10)
     errors.phone = 'Enter a phone number, like 07700 900123 or 028 9000 0000';
-  if (!d.email) errors.email = 'Enter your email address';
-  else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(d.email))
+  if (d.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(d.email))
     errors.email = 'Enter an email address in the correct format, like name@example.com';
   if (!d.postcode) errors.postcode = 'Enter your postcode';
   else if (!/^[A-Z]{1,2}[0-9][A-Z0-9]? ?[0-9][A-Z]{2}$/i.test(d.postcode))
@@ -132,11 +131,11 @@ async function sendEmail(
   env: Env,
 ): Promise<void> {
   const text = [
-    'New free survey request from the website',
+    'New call-back request from the website',
     '',
     `Name: ${d.name}`,
     `Phone: ${d.phone}`,
-    `Email: ${d.email}`,
+    `Email: ${d.email || 'Not given'}`,
     `Postcode: ${d.postcode}`,
     `Interested in: ${d.interests.length ? d.interests.join(', ') : 'Not specified'}`,
     '',
@@ -161,8 +160,8 @@ async function sendEmail(
     body: JSON.stringify({
       from: env.QUOTE_FROM_EMAIL,
       to: [env.QUOTE_TO_EMAIL],
-      reply_to: d.email,
-      subject: `Survey request: ${d.name}, ${d.postcode}`,
+      ...(d.email ? { reply_to: d.email } : {}),
+      subject: `Call-back request: ${d.name}, ${d.phone}, ${d.postcode}`,
       text, // plain text only, so nothing the visitor typed can be rendered as HTML
     }),
   });

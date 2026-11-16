@@ -19,13 +19,13 @@ const updated = '9 November 2026'; // PLACEHOLDER: update whenever the policy ch
         {site.name}, trading as {site.tradingAs.name} (“we”), is the data controller for personal information collected through this website.
         We’re based in {site.address.locality}.
         <!-- PLACEHOLDER: add your ICO registration number if you have one -->
-        You can contact us about privacy at <a href={`mailto:${site.email}`}>{site.email}</a> or on {site.phone.display}.
+        You can contact us about privacy by phone on <a href={site.phone.href}>{site.phone.display}</a>.
       </p>
 
       <h2>What we collect</h2>
-      <p>When you fill in our survey request form, we collect:</p>
+      <p>When you fill in our call-back form, we collect:</p>
       <ul>
-        <li>your name, phone number, email address and postcode</li>
+        <li>your name, phone number, postcode and, if you give it, your email address</li>
         <li>the services you’re interested in, and anything you choose to tell us in the message box</li>
       </ul>
       <p>
@@ -35,7 +35,7 @@ const updated = '9 November 2026'; // PLACEHOLDER: update whenever the policy ch
 
       <h2>How we use it and why</h2>
       <ul>
-        <li><strong>To arrange your survey and send your quote.</strong> We do this because you’ve asked us to, as a step before entering into a contract with you.</li>
+        <li><strong>To call you back, arrange your survey and send your quote.</strong> We do this because you’ve asked us to, as a step before entering into a contract with you.</li>
         <li><strong>To keep records of the work we do</strong>, as required for our SSAIB registration, insurance and tax. This is a legal obligation or our legitimate interest.</li>
         <li><strong>To protect the website from spam and abuse.</strong> This is our legitimate interest.</li>
       </ul>
@@ -71,7 +71,7 @@ const updated = '9 November 2026'; // PLACEHOLDER: update whenever the policy ch
         <li>object to or restrict how we use it</li>
         <li>ask us to transfer it to someone else</li>
       </ul>
-      <p>To make a request, email <a href={`mailto:${site.email}`}>{site.email}</a>. We’ll reply within one month.</p>
+      <p>To make a request, call us on <a href={site.phone.href}>{site.phone.display}</a>. We’ll respond within one month.</p>
 
       <h2>Complaints</h2>
       <p>

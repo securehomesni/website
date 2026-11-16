@@ -1,0 +1,34 @@
+---
+/**
+ * Closing call to action on the homepage: call now, or go to the
+ * call-back form on the contact page.
+ */
+import { site, ctaLabel, ctaHref } from '../../config/site';
+import Icon from '../ui/Icon.astro';
+---
+<section aria-labelledby="final-cta-title" class="on-dark bg-navy py-section text-paper">
+  <div class="wrap grid gap-10 lg:grid-cols-12 lg:items-center">
+    <div class="lg:col-span-7">
+      <h2 id="final-cta-title" class="text-3xl tracking-display text-white">Get a free, no-obligation quote</h2>
+      <p class="mt-5 max-w-xl text-lg text-paper/90">
+        Call us now, or request a call back and we’ll ring you within one working day to talk through what you need.
+      </p>
+      <ul class="mt-8 grid gap-2.5 text-paper/90 sm:grid-cols-2">
+        <li class="flex gap-2.5"><Icon name="check" class="mt-1 text-teal-soft" />Free survey of your home</li>
+        <li class="flex gap-2.5"><Icon name="check" class="mt-1 text-teal-soft" />Fixed written quote</li>
+        <li class="flex gap-2.5"><Icon name="check" class="mt-1 text-teal-soft" />Local, SSAIB-registered engineers</li>
+        <li class="flex gap-2.5"><Icon name="check" class="mt-1 text-teal-soft" />Takeovers of existing systems</li>
+      </ul>
+    </div>
+    <div class="flex flex-col gap-3 lg:col-span-5">
+      <a href={site.phone.href} class="btn btn-on-dark w-full text-lg">
+        <Icon name="phone" />
+        <span>Call {site.phone.display}</span>
+      </a>
+      <a href={ctaHref} class="btn w-full border-paper/70 text-lg text-white hover:bg-white hover:text-navy">{ctaLabel}</a>
+      <p class="mt-1 text-center text-sm text-paper/80">
+        {site.hours.map((h, i) => <>{i > 0 && ', '}{h.days} {h.time}</>)}
+      </p>
+    </div>
+  </div>
+</section>

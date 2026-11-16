@@ -4,7 +4,7 @@
  * when there's a matching file in src/content/locations/.
  */
 import { getCollection } from 'astro:content';
-import { site, ctaLabel } from '../../config/site';
+import { site, ctaLabel, ctaHref } from '../../config/site';
 import Icon from '../ui/Icon.astro';
 import Placeholder from '../ui/Placeholder.astro';
 
@@ -20,7 +20,7 @@ const pageFor = (town: string) => locations.find((l) => l.data.name.toLowerCase(
       </p>
       <p class="mt-4 text-muted">
         Not on the list? We often travel further. Call <a class="link font-semibold" href={site.phone.href}>{site.phone.display}</a> or
-        <a class="link font-semibold" href="#quote">{ctaLabel.toLowerCase()}</a> and we’ll let you know.
+        <a class="link font-semibold" href={ctaHref}>{ctaLabel.toLowerCase()}</a> and we’ll let you know.
       </p>
     </div>
 

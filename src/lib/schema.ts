@@ -27,7 +27,6 @@ export function localBusinessSchema(siteUrl: URL) {
     description: site.description,
     url: `${base}/`,
     telephone: site.phone.e164,
-    email: site.email,
     image: `${base}/og-default.png`,
     logo: `${base}/favicon.svg`,
     address,

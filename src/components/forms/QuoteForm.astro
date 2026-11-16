@@ -1,6 +1,6 @@
 ---
 /**
- * Free survey / quote request form.
+ * Call-back request form (on the contact page).
  *
  * - Works without JavaScript: posts to /api/quote (functions/api/quote.ts) and
  *   redirects to /thank-you/.
@@ -47,16 +47,16 @@ const interests = [
     <div class="grid gap-6 sm:grid-cols-2">
       <div class="field" data-field="phone">
         <label class="field-label" for="qf-phone">Phone number</label>
-        <p class="field-hint" id="qf-phone-hint">We’ll call to arrange your survey</p>
+        <p class="field-hint" id="qf-phone-hint">The number we should call you back on</p>
         <p class="field-error" id="qf-phone-error" hidden></p>
         <input class="field-input" id="qf-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" required maxlength="20" aria-describedby="qf-phone-hint" />
       </div>
 
       <div class="field" data-field="email">
-        <label class="field-label" for="qf-email">Email address</label>
-        <p class="field-hint" id="qf-email-hint">For your written quote</p>
+        <label class="field-label" for="qf-email">Email address (optional)</label>
+        <p class="field-hint" id="qf-email-hint">So we can send your written quote</p>
         <p class="field-error" id="qf-email-error" hidden></p>
-        <input class="field-input" id="qf-email" name="email" type="email" autocomplete="email" spellcheck="false" required maxlength="150" aria-describedby="qf-email-hint" />
+        <input class="field-input" id="qf-email" name="email" type="email" autocomplete="email" spellcheck="false" maxlength="150" aria-describedby="qf-email-hint" />
       </div>
     </div>
 
@@ -95,20 +95,20 @@ const interests = [
     <div class="cf-turnstile min-h-[65px]" data-sitekey={siteKey} data-size="flexible" data-theme="light"></div>
 
     <p class="text-sm text-muted">
-      We’ll only use your details to arrange your survey and quote. Read our
+      We’ll only use your details to call you back and prepare your quote. Read our
       <a class="link" href="/privacy-policy/">privacy policy</a>.
     </p>
 
     <div>
-      <button type="submit" class="btn btn-primary w-full px-8 text-lg sm:w-auto" data-submit>Book my free survey</button>
+      <button type="submit" class="btn btn-primary w-full px-8 text-lg sm:w-auto" data-submit>Request a call back</button>
       <p class="mt-4 font-semibold" role="status" aria-live="polite" data-status></p>
     </div>
   </form>
 
   <div class="rounded-md border-2 border-teal-ink bg-mint p-6 md:p-8" tabindex="-1" hidden data-success>
-    <h3 class="text-2xl tracking-display">Thanks, your survey request has been sent</h3>
+    <h3 class="text-2xl tracking-display">Thanks, we’ll call you back</h3>
     <p class="mt-4">
-      We’ll call you within one working day to arrange a time that suits you.
+      We’ll call you within one working day to talk through what you need.
       If it’s urgent, call us on <a class="link font-semibold" href={site.phone.href}>{site.phone.display}</a>.
     </p>
   </div>
@@ -136,6 +136,14 @@ const interests = [
 
     // We show our own, clearer error messages instead of the browser's
     form.noValidate = true;
+
+    // Links such as /contact/?interest=Security+bundle tick that option for the visitor
+    const preselect = new URLSearchParams(location.search).get('interest');
+    if (preselect) {
+      form.querySelectorAll<HTMLInputElement>('input[name="interest"]').forEach((box) => {
+        if (box.value === preselect) box.checked = true;
+      });
+    }
 
     /* ---- Load Turnstile only when it's needed ----------------------- */
     let turnstileLoaded = false;
@@ -180,8 +188,7 @@ const interests = [
       else if (!/^[0-9 +()-]+$/.test(tel) || tel.replace(/\D/g, '').length < 10)
         errors.phone = 'Enter a phone number, like 07700 900123 or 028 9000 0000';
 
-      if (!email) errors.email = 'Enter your email address';
-      else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))
+      if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))
         errors.email = 'Enter an email address in the correct format, like name@example.com';
 
       if (!postcode) errors.postcode = 'Enter your postcode';
@@ -277,7 +284,7 @@ const interests = [
       const data = new FormData(form);
       if (!data.get('cf-turnstile-response')) {
         loadTurnstile();
-        fail('Our spam check is still loading. Wait a few seconds, then select “Book my free survey” again.');
+        fail('Our spam check is still loading. Wait a few seconds, then select “Request a call back” again.');
         return;
       }
 

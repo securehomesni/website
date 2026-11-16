@@ -1,7 +1,7 @@
 ---
 /**
  * Bundle offer. Everything here is edited in `bundle` in src/config/site.ts.
- * The button ticks "Security bundle" on the survey form before scrolling to it.
+ * The button opens the call-back form with "Security bundle" already ticked.
  */
 import { site } from '../../config/site';
 import Icon from '../ui/Icon.astro';
@@ -21,7 +21,7 @@ const { bundle } = site;
         <p class="mt-3 text-muted"><Placeholder note="What the price covers">{bundle.priceNote}</Placeholder></p>
 
         <div class="mt-9 flex flex-wrap items-center gap-x-6 gap-y-4">
-          <a href="#quote" class="btn btn-primary px-7 text-lg" data-select-interest="Security bundle">Book a survey for the bundle</a>
+          <a href="/contact/?interest=Security+bundle#quote" class="btn btn-primary px-7 text-lg">Request a call back<span class="sr-only"> about the bundle</span></a>
           <a href={site.phone.href} class="link whitespace-nowrap font-semibold">or call {site.phone.display}</a>
         </div>
       </div>
@@ -47,16 +47,3 @@ const { bundle } = site;
   </section>
 )}
 
-<script>
-  // Tick the matching interest on the survey form, so the request says which offer it's about
-  document.querySelectorAll<HTMLAnchorElement>('[data-select-interest]').forEach((link) => {
-    link.addEventListener('click', () => {
-      const value = link.dataset.selectInterest;
-      document
-        .querySelectorAll<HTMLInputElement>('input[name="interest"]')
-        .forEach((box) => {
-          if (box.value === value) box.checked = true;
-        });
-    });
-  });
-</script>

@@ -9,10 +9,10 @@
  * A still photo is used rather than video: WCAG and the brief rule out autoplaying media.
  */
 import { Image } from 'astro:assets';
-import { site, ctaLabel } from '../../config/site';
+import { site, ctaLabel, ctaHref } from '../../config/site';
 import Icon from '../ui/Icon.astro';
 import Placeholder from '../ui/Placeholder.astro';
-import Snow from './Snow.astro';
+import Christmas from './Christmas.astro';
 import heroPhoto from '../../assets/work/hero.jpg';
 ---
 <section aria-labelledby="hero-title" class="on-dark relative isolate overflow-hidden bg-navy text-paper">
@@ -27,7 +27,7 @@ import heroPhoto from '../../assets/work/hero.jpg';
   />
   <!-- Keeps text readable over any photo: solid on small screens, fading to the right on large ones -->
   <div class="absolute inset-0 -z-10 bg-navy/85 lg:bg-transparent lg:bg-linear-to-r lg:from-navy lg:from-40% lg:via-navy/85 lg:to-navy/40" aria-hidden="true"></div>
-  <Snow />
+  <Christmas />
 
   <div class="wrap flex min-h-[32rem] items-center py-16 md:py-20 lg:min-h-[40rem] lg:py-24">
     <div class="max-w-2xl">
@@ -41,11 +41,11 @@ import heroPhoto from '../../assets/work/hero.jpg';
       </p>
 
       <div class="mt-9 flex flex-col gap-3 sm:flex-row sm:gap-4">
-        <a href="#quote" class="btn btn-on-dark px-7 text-lg">{ctaLabel}</a>
-        <a href={site.phone.href} class="btn border-paper/70 px-6 text-lg text-white hover:bg-white hover:text-navy">
+        <a href={site.phone.href} class="btn btn-on-dark px-6 text-lg">
           <Icon name="phone" />
           <span>Call {site.phone.display}</span>
         </a>
+        <a href={ctaHref} class="btn border-paper/70 px-6 text-lg text-white hover:bg-white hover:text-navy">{ctaLabel}</a>
       </div>
 
       <ul class="mt-10 grid gap-x-8 gap-y-3 border-t border-white/15 pt-6 text-paper/90 sm:grid-cols-2" aria-label="Why you can trust us">

@@ -25,7 +25,6 @@ const year = new Date().getFullYear();
       <h2 class="text-base font-semibold text-paper">Contact us</h2>
       <ul class="mt-4 space-y-2 text-sm">
         <li><a class="link text-base font-semibold" href={site.phone.href}>{site.phone.display}</a></li>
-        <li><a class="link" href={`mailto:${site.email}`}>{site.email}</a></li>
         <li class="pt-2 text-paper/85">
           {site.address.showStreet && site.address.street ? (
             <>{site.address.street}<br />{site.address.locality}, {site.address.postcode}</>

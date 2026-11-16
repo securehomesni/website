@@ -1,15 +1,15 @@
 ---
 /**
- * How it works. One process whether it's a new system, a repair, an upgrade
+ * Our process. One process whether it's a new system, a repair, an upgrade
  * or servicing, so it's an ordered list with step numbers.
  */
-import { ctaLabel, site } from '../../config/site';
+import { ctaLabel, ctaHref, site } from '../../config/site';
 import Placeholder from '../ui/Placeholder.astro';
 ---
 <section aria-labelledby="process-title" class="border-t border-line py-section">
   <div class="wrap">
     <div class="max-w-2xl">
-      <h2 id="process-title" class="text-3xl tracking-display">How it works</h2>
+      <h2 id="process-title" class="text-3xl tracking-display">Our process</h2>
       <p class="mt-5 text-lg">
         Installation is only part of what we do. Whether it’s a new system, a repair, an upgrade, servicing or taking over a system someone else fitted, it works the same way, and you deal with the same local team throughout.
       </p>
@@ -48,9 +48,9 @@ import Placeholder from '../ui/Placeholder.astro';
     </ol>
 
     <div class="mt-14 flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-6">
-      <a href="#quote" class="btn btn-primary">{ctaLabel}</a>
+      <a href={ctaHref} class="btn btn-primary">{ctaLabel}</a>
       <p class="text-muted">
-        Need a repair? Call <a href={site.phone.href} class="link font-semibold">{site.phone.display}</a>
+        Or call <a href={site.phone.href} class="link font-semibold">{site.phone.display}</a>
       </p>
     </div>
   </div>
