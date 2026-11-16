@@ -1,0 +1,24 @@
+---
+/**
+ * A quote from the director. Wording, name and role are in `director` in src/config/site.ts.
+ */
+import { site } from '../../config/site';
+import Placeholder from '../ui/Placeholder.astro';
+
+const { director } = site;
+---
+<section aria-label={`A word from our ${director.role.toLowerCase()}`} class="border-t border-line py-section">
+  <div class="wrap">
+    <figure class="max-w-4xl border-l-4 border-teal pl-6 md:pl-10">
+      <blockquote>
+        <p class="text-2xl font-medium leading-snug tracking-tight text-navy md:text-[1.875rem] md:leading-[1.3]">
+          <Placeholder note="Quote to be approved by Aaron">“{director.quote}”</Placeholder>
+        </p>
+      </blockquote>
+      <figcaption class="mt-8">
+        <span class="block font-semibold text-navy">{director.name}</span>
+        <span class="block text-muted">{director.role}, {site.name}</span>
+      </figcaption>
+    </figure>
+  </div>
+</section>

@@ -4,13 +4,14 @@ import Hero from '../components/home/Hero.astro';
 import Services from '../components/home/Services.astro';
 import Bundle from '../components/home/Bundle.astro';
 import Process from '../components/home/Process.astro';
+import DirectorQuote from '../components/home/DirectorQuote.astro';
 import Areas from '../components/home/Areas.astro';
 import QuoteSection from '../components/QuoteSection.astro';
 import { site } from '../config/site';
 ---
 <BaseLayout
   title={`CCTV, Alarm and Security Lighting Installers in Belfast | ${site.name}`}
-  description="Local, SSAIB-registered installers of home CCTV, intruder alarms and security lighting in Belfast and across Northern Ireland. Repairs, upgrades and servicing too."
+  description="Local, SSAIB-registered CCTV, alarm and security lighting installers in Belfast and across Northern Ireland. Repairs, servicing and system takeovers too."
   quoteHref="#quote"
   businessSchema
 >
@@ -18,6 +19,7 @@ import { site } from '../config/site';
   <Services />
   <Bundle />
   <Process />
+  <DirectorQuote />
   <Areas />
   <QuoteSection
     tone="dark"

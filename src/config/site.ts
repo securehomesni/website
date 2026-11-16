@@ -87,6 +87,14 @@ export const site = {
     { title: 'Two-year warranty', text: 'On all equipment and workmanship, with a simple number to call.' }, // PLACEHOLDER
   ],
 
+  // Quote shown on the homepage. PLACEHOLDER: draft wording, to be approved by Aaron.
+  director: {
+    name: 'Aaron Ashton',
+    role: 'Director',
+    quote:
+      'Most people here don’t want their home to feel like a fortress. They want to see who’s at the door, know the house is fine while they’re away, and have a local number to ring if anything goes wrong. That’s what we build, from terraces in Belfast to bungalows in North Down: equipment that copes with Northern Ireland weather, fitted properly and looked after for years.',
+  },
+
   // Homepage bundle offer. Set `show: false` to hide the section.
   bundle: {
     show: true,

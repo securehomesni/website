@@ -31,6 +31,7 @@ const workTypes = [
   { title: 'Repairs', text: 'Faults, false alarms and cameras that have stopped recording.' },
   { title: 'Upgrades', text: 'Add cameras or sensors, or replace an old system with a modern one.' },
   { title: 'Servicing', text: 'Regular checks that keep everything working and insurers happy.' },
+  { title: 'System takeovers', text: 'We take over systems fitted by other companies, including ones that have stopped trading.' },
 ];
 ---
 <section aria-labelledby="services-title" class="py-section">
@@ -38,7 +39,7 @@ const workTypes = [
     <div class="grid gap-6 lg:grid-cols-12 lg:items-end">
       <h2 id="services-title" class="text-3xl tracking-display lg:col-span-6">Home security services</h2>
       <p class="max-w-xl text-lg text-muted lg:col-span-6">
-        Three systems that work best together. We fit them, fix them, upgrade them and look after them, including systems we didn’t install.
+        Three systems that work best together. We fit them, fix them, upgrade them and look after them, and we take over systems other companies installed.
       </p>
     </div>
 
@@ -72,17 +73,17 @@ const workTypes = [
     </ul>
 
     <div class="mt-16 rounded-md border border-line bg-white">
-      <h3 class="border-b border-line px-6 py-4 text-lg md:px-8">For every system, we do</h3>
-      <ul class="grid gap-px bg-line sm:grid-cols-2 lg:grid-cols-4">
+      <h3 class="border-b border-line px-6 py-4 text-lg">For every system, we do</h3>
+      <ul class="grid gap-px bg-line sm:grid-cols-2 lg:grid-cols-5">
         {workTypes.map((w) => (
-          <li class="bg-white px-6 py-5 md:px-8">
+          <li class="bg-white px-6 py-5 sm:last:col-span-2 lg:last:col-span-1">
             <p class="font-semibold text-navy">{w.title}</p>
             <p class="mt-1 text-sm text-muted">{w.text}</p>
           </li>
         ))}
       </ul>
-      <p class="rounded-b-md border-t border-line bg-mint px-6 py-4 text-sm md:px-8">
-        Need a repair or service? <a href="/services/maintenance/" class="link font-semibold">Repairs, upgrades and servicing</a>
+      <p class="rounded-b-md border-t border-line bg-mint px-6 py-4 text-sm">
+        Need a repair, a service or a takeover? <a href="/services/maintenance/" class="link font-semibold">Repairs, servicing and system takeovers</a>
       </p>
     </div>
   </div>
