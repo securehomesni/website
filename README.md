@@ -50,8 +50,7 @@ With `DEV_MODE=true` and no Resend key, submissions are printed to the terminal 
     ├── styles/global.css       ★ Design tokens + shared component styles
     ├── content/                ★ Markdown content collections
     │   ├── services/           One file per service page
-    │   ├── locations/          One file per area page
-    │   └── guides/             Guides / blog posts
+    │   └── locations/          One file per area page
     ├── content.config.ts       Collection schemas (frontmatter fields)
     ├── data/faqs.ts            ★ FAQs (shown on the contact page)
     ├── assets/work/            ★ Photos (optimised at build time)
@@ -74,7 +73,6 @@ With `DEV_MODE=true` and no Resend key, submissions are printed to the terminal 
 | `/` | `pages/index.astro` |
 | `/services/`, `/services/cctv/` … | `pages/services/` + `content/services/*.md` |
 | `/areas/`, `/areas/belfast/` … | `pages/areas/` + `content/locations/*.md` |
-| `/guides/`, `/guides/domestic-cctv-and-the-law/` | `pages/guides/` + `content/guides/*.md` |
 | `/about/`, `/contact/`, `/privacy-policy/`, `/accessibility-statement/` | `pages/*.astro` |
 | `/thank-you/` (noindex), `/404` | Form confirmation without JavaScript; not-found page |
 | `/robots.txt`, `/sitemap-index.xml` | Generated at build |
@@ -84,11 +82,11 @@ With `DEV_MODE=true` and no Resend key, submissions are printed to the terminal 
 ## Editing content
 
 ### Business details
-Everything in **`src/config/site.ts`**: name, phone, email, address, hours, areas, SSAIB number, insurance, review rating, promises ("what makes us different"), navigation. It feeds the header, footer, structured data and page copy.
+Everything in **`src/config/site.ts`**: name, phone, email, address, hours, areas, SSAIB number, trading name, review rating, promises ("what makes us different"), navigation. It feeds the header, footer, structured data and page copy.
 
 **Name, address and phone must match your Google Business Profile exactly.**
 
-### Adding a service, area or guide
+### Adding a service or area
 Copy an existing Markdown file in the matching `src/content/` folder and change the frontmatter and text. The file name becomes the URL (`cctv-for-flats.md` → `/services/cctv-for-flats/`). Required fields are defined and validated in `src/content.config.ts`; the build fails with a clear message if one is missing.
 
 - **Services:** `featured: true` gives a service a full row on the homepage. `order` sets the order everywhere.
@@ -196,7 +194,6 @@ Before launch, and after big changes:
 - [ ] Real logo, favicon and OG image
 - [ ] Unique local copy for each location page
 - [ ] Privacy policy reviewed and retention periods confirmed
-- [ ] Guide to domestic CCTV and the law reviewed against current ICO guidance
 - [ ] Accessibility statement updated with test date and any known issues
 - [ ] Production Turnstile and Resend keys set; a real test enquiry received
 - [ ] Remove the `<!-- PLACEHOLDER -->` HTML comments from Markdown files

@@ -1,6 +1,6 @@
 /**
  * CONTENT COLLECTIONS
- * Service, location and guide pages are Markdown files in src/content/.
+ * Service and location pages are Markdown files in src/content/.
  * Add a file and a page is created automatically at build time.
  */
 import { defineCollection } from 'astro:content';
@@ -34,15 +34,4 @@ const locations = defineCollection({
   }),
 });
 
-const guides = defineCollection({
-  loader: glob({ pattern: '**/*.md', base: './src/content/guides' }),
-  schema: z.object({
-    title: z.string(),
-    description: z.string().max(160),
-    published: z.coerce.date(),
-    updated: z.coerce.date().optional(),
-    placeholder: z.boolean().default(false),
-  }),
-});
-
-export const collections = { services, locations, guides };
+export const collections = { services, locations };

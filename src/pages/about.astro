@@ -47,10 +47,10 @@ const siteUrl = Astro.site ?? new URL(Astro.url.origin);
           <li>We’re SSAIB registered, so our work and processes are independently inspected.</li>
           <li>Every engineer is vetted and carries ID.</li>
         </ul>
-        <h2>Accreditation and insurance</h2>
+        <h2>Accreditation</h2>
         <p>
-          SSAIB registration number {site.ssaib.registrationNumber}. Public liability insurance of {site.insurance.publicLiability}.
-          {site.legalName} is registered in Northern Ireland, company number {site.companyNumber}.
+          We’re SSAIB registered, registration number {site.ssaib.registrationNumber}.
+          {site.name} is based in {site.address.locality} and trades as <a href={site.tradingAs.url}>{site.tradingAs.name}</a>.
         </p>
       </div>
     </div>

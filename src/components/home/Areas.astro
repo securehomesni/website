@@ -16,7 +16,7 @@ const pageFor = (town: string) => locations.find((l) => l.data.name.toLowerCase(
     <div class="lg:col-span-5">
       <h2 id="areas-title" class="text-3xl tracking-display">Areas we cover</h2>
       <p class="mt-5 text-lg">
-        We cover homes across <Placeholder note="Service area">{site.areaSummary}</Placeholder>, from our base in <Placeholder note="Base town">{site.address.locality}</Placeholder>.
+        We cover homes across <Placeholder note="Service area">{site.areaSummary}</Placeholder>, from our base in {site.address.locality}.
       </p>
       <p class="mt-4 text-muted">
         Not on the list? We often travel further. Call <a class="link font-semibold" href={site.phone.href}>{site.phone.display}</a> or

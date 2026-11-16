@@ -27,8 +27,11 @@ const year = new Date().getFullYear();
         <li><a class="link text-base font-semibold" href={site.phone.href}>{site.phone.display}</a></li>
         <li><a class="link" href={`mailto:${site.email}`}>{site.email}</a></li>
         <li class="pt-2 text-paper/85">
-          {site.address.showStreet && site.address.street && <>{site.address.street}<br /></>}
-          {site.address.locality}, {site.address.postcode}
+          {site.address.showStreet && site.address.street ? (
+            <>{site.address.street}<br />{site.address.locality}, {site.address.postcode}</>
+          ) : (
+            <>Based in {site.address.locality}</>
+          )}
         </li>
       </ul>
       <h3 class="mt-6 text-sm font-semibold text-paper">Opening hours</h3>
@@ -64,8 +67,7 @@ const year = new Date().getFullYear();
   <div class="bg-navy-deep">
     <div class="wrap flex flex-col gap-3 py-6 text-sm text-paper/85 md:flex-row md:items-center md:justify-between">
       <p>
-        &copy; {year} {site.legalName}. Registered in Northern Ireland, company number {site.companyNumber}.
-        Public liability insurance {site.insurance.publicLiability}.
+        &copy; {year} {site.name}, trading as <a class="link" href={site.tradingAs.url}>{site.tradingAs.name}</a>.
       </p>
       <ul class="flex shrink-0 flex-wrap gap-x-6 gap-y-1">
         {legalNav.map((item) => (

@@ -339,7 +339,7 @@
     color: var(--color-teal-ink);
   }
 
-  /* Long-form content (guides, service pages, legal pages) --------------- */
+  /* Long-form content (service, area and legal pages) --------------- */
   .prose-content {
     max-width: var(--container-measure);
     font-size: var(--text-base);

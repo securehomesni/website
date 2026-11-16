@@ -24,7 +24,6 @@ export function localBusinessSchema(siteUrl: URL) {
     '@type': 'LocalBusiness',
     '@id': `${base}/#business`,
     name: site.name,
-    legalName: site.legalName,
     description: site.description,
     url: `${base}/`,
     telephone: site.phone.e164,

@@ -14,8 +14,11 @@
 
 export const site = {
   name: 'Secure Home NI', // PLACEHOLDER: trading name exactly as on Google Business Profile
-  legalName: 'Secure Home NI Ltd', // PLACEHOLDER
-  companyNumber: 'NI000000', // PLACEHOLDER: Companies House number, or remove if a sole trader
+  // The company behind the brand, shown in the footer
+  tradingAs: {
+    name: 'Unified Integrated Systems',
+    url: 'https://www.unified-is.com/',
+  },
   description:
     'SSAIB-registered installers of CCTV, intruder alarms and security lighting for homes in Belfast and across Northern Ireland.', // PLACEHOLDER: adjust to real service area
   established: '2010', // PLACEHOLDER: year the business started
@@ -32,7 +35,7 @@ export const site = {
   // which matches how Google Business Profile handles them.
   address: {
     street: '', // PLACEHOLDER
-    locality: 'Belfast', // PLACEHOLDER
+    locality: 'Belfast',
     region: 'County Antrim', // PLACEHOLDER
     postcode: 'BT1 1AA', // PLACEHOLDER
     country: 'GB',
@@ -66,10 +69,6 @@ export const site = {
     registrationNumber: '000000', // PLACEHOLDER
     // PLACEHOLDER: link straight to the company's entry in the SSAIB directory if possible
     url: 'https://www.ssaib.org/',
-  },
-
-  insurance: {
-    publicLiability: '£5 million', // PLACEHOLDER
   },
 
   reviews: {
@@ -133,7 +132,6 @@ export const site = {
 export const nav = [
   { label: 'Services', href: '/services/' },
   { label: 'Areas we cover', href: '/areas/' },
-  { label: 'Guides', href: '/guides/' },
   { label: 'About us', href: '/about/' },
   { label: 'Contact', href: '/contact/' },
 ] as const;

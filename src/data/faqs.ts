@@ -8,7 +8,7 @@ export const ICO_HOME_CCTV_URL =
 export const faqs: { question: string; answer: string }[] = [
   {
     question: 'Is it legal to have CCTV on my house?',
-    answer: `Yes. You can use CCTV to protect your home. If your cameras only record your own property, data protection law doesn't apply to the footage. If they capture anything beyond your boundary, such as the street or a neighbour's garden, UK data protection law does apply and you'll have some responsibilities. The Information Commissioner's Office explains these in its <a href="${ICO_HOME_CCTV_URL}">guidance on home CCTV systems</a>, and we've summarised it in our <a href="/guides/domestic-cctv-and-the-law/">guide to domestic CCTV and the law</a>.`,
+    answer: `Yes. You can use CCTV to protect your home. If your cameras only record your own property, data protection law doesn't apply to the footage. If they capture anything beyond your boundary, such as the street or a neighbour's garden, UK data protection law does apply and you'll have some responsibilities. The Information Commissioner's Office explains these in its <a href="${ICO_HOME_CCTV_URL}">guidance on home CCTV systems</a>.`,
   },
   {
     question: 'Will my cameras record my neighbours?',

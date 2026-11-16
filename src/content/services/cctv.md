@@ -24,7 +24,7 @@ A good CCTV system is mostly about where the cameras go. We spend the survey wor
 
 ## Cameras and your neighbours
 
-If a camera captures anything beyond your property boundary, UK data protection law applies to that footage. We use careful positioning and privacy masking to keep recording to your own property where we can, and we explain what that means for you in plain English. Read our [guide to domestic CCTV and the law](/guides/domestic-cctv-and-the-law/).
+If a camera captures anything beyond your property boundary, UK data protection law applies to that footage. We use careful positioning and privacy masking to keep recording to your own property where we can, and we explain what that means for you in plain English. Read the [Information Commissioner's guidance on home CCTV](https://ico.org.uk/your-data-matters/domestic-cctv-systems-guidance-for-people-using-cctv/).
 
 ## Typical installation
 
