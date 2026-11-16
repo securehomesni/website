@@ -1,9 +1,9 @@
 ---
 title: Intruder alarms
 shortTitle: Intruder alarms
-summary: Wired and wireless alarms designed around how you use your home, so they protect you without false alarms when the cat walks past.
+summary: Pyronix wired and wireless alarms designed around how you use your home, so they protect you without false alarms when the cat walks past.
 metaTitle: Intruder Alarm Installation for Homes in Belfast and Northern Ireland
-metaDescription: Wired and wireless home intruder alarms fitted by SSAIB-registered engineers. App control, pet-friendly sensors and servicing. Book a free survey.
+metaDescription: Pyronix wired and wireless home alarms fitted by SSAIB-registered specialists. App control, pet-friendly sensors and servicing. Request a call back.
 order: 2
 featured: true
 placeholder: true
@@ -16,11 +16,11 @@ An alarm should fit the way you live. On the survey we look at how you move arou
 ## What's included
 
 - A free survey and a fixed written quote
-- Wired or wireless systems, depending on your home and whether you're decorating
+- Pyronix wired or wireless systems, depending on your home and whether you're decorating
 - Pet-tolerant sensors where needed
 - An external bell box and an app to set, unset and check the alarm
 - Installation to [PD 6662 and BS EN 50131] by SSAIB-registered engineers
-- [Two-year] warranty on equipment and workmanship
+- 12-month guarantee on equipment and workmanship
 
 ## Monitoring options
 

@@ -1,0 +1,85 @@
+---
+/**
+ * How we compare with Ring, Verisure and ADT, and how switching works.
+ * Table content and sources: src/data/comparison.ts (review it regularly).
+ */
+import { site } from '../../config/site';
+import { competitors, rows, lastChecked } from '../../data/comparison';
+import Icon from '../ui/Icon.astro';
+import Placeholder from '../ui/Placeholder.astro';
+---
+<section aria-labelledby="compare-title" class="border-y border-line bg-white py-section">
+  <div class="wrap">
+    <div class="max-w-2xl">
+      <h2 id="compare-title" class="text-3xl tracking-display">How we compare</h2>
+      <p class="mt-5 text-lg">
+        Ring, Verisure and ADT are popular choices. Here’s how a system from a local Northern Ireland installer is different.
+      </p>
+    </div>
+
+    <!-- Scrolls sideways on small screens; focusable so keyboard users can scroll it too -->
+    <div class="mt-10 overflow-x-auto rounded-md border border-line" role="region" aria-labelledby="compare-caption" tabindex="0">
+      <table class="w-full min-w-[46rem] border-collapse text-left">
+        <caption id="compare-caption" class="sr-only">{site.name} compared with {competitors.join(', ')}</caption>
+        <thead>
+          <tr class="border-b border-line">
+            <th scope="col" class="w-[18%] p-4 text-sm font-semibold text-muted"><span class="sr-only">Feature</span></th>
+            <th scope="col" class="w-[24%] bg-navy p-4 text-white">{site.name}</th>
+            {competitors.map((c) => <th scope="col" class="p-4 text-navy">{c}</th>)}
+          </tr>
+        </thead>
+        <tbody>
+          {rows.map((row) => (
+            <tr class="border-b border-line last:border-b-0">
+              <th scope="row" class="p-4 align-top text-sm font-semibold text-navy">{row.label}</th>
+              <td class="bg-mint p-4 align-top font-semibold text-navy">
+                <span class="flex gap-2"><Icon name="check" class="mt-1 text-teal-ink" />{row.us}</span>
+              </td>
+              {row.others.map((cell) => <td class="p-4 align-top text-ink">{cell}</td>)}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+    <p class="mt-4 max-w-3xl text-sm text-muted">
+      <Placeholder note="Have the comparison reviewed before launch">
+        Based on information published by each company, checked {lastChecked}. Packages change, so check your own agreement.
+        Ring, Verisure and ADT are trade marks of their respective owners. We’re not connected with any of them.
+      </Placeholder>
+    </p>
+
+    <div class="mt-16 grid gap-10 rounded-md bg-mint p-6 md:p-10 lg:grid-cols-12 lg:gap-12">
+      <div class="lg:col-span-5">
+        <h3 class="text-2xl tracking-display">Already with Ring, Verisure or ADT?</h3>
+        <p class="mt-4">
+          You don’t have to put up with a system that doesn’t suit you. We’ll design a package around your home and what you already have, and make switching straightforward.
+        </p>
+        <div class="mt-7 flex flex-wrap items-center gap-x-6 gap-y-4">
+          <a href="/contact/?interest=Switching+from+another+provider#quote" class="btn btn-primary">
+            Request a call back<span class="sr-only"> about switching</span>
+          </a>
+          <a href={site.phone.href} class="link whitespace-nowrap font-semibold">or call {site.phone.display}</a>
+        </div>
+      </div>
+      <ol class="grid gap-6 lg:col-span-7">
+        <li class="border-t-2 border-navy pt-4">
+          <p class="text-sm font-semibold text-teal-ink">Step 1</p>
+          <p class="mt-1 font-semibold text-navy">Check your contract</p>
+          <p class="mt-1">Find your end date and notice period. If you’re not sure, we can talk you through what to look for.</p>
+        </li>
+        <li class="border-t-2 border-navy pt-4">
+          <p class="text-sm font-semibold text-teal-ink">Step 2</p>
+          <p class="mt-1 font-semibold text-navy">Free survey and a package made for you</p>
+          <p class="mt-1">
+            We look at your home and your current equipment. Devices you own, like Ring doorbells, can often stay. Rented equipment usually has to go back, so we’ll quote to replace it.
+          </p>
+        </li>
+        <li class="border-t-2 border-navy pt-4">
+          <p class="text-sm font-semibold text-teal-ink">Step 3</p>
+          <p class="mt-1 font-semibold text-navy">A switch with no gap</p>
+          <p class="mt-1">We time the installation around your old contract ending, so your home is protected throughout.</p>
+        </li>
+      </ol>
+    </div>
+  </div>
+</section>

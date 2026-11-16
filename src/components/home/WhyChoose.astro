@@ -1,0 +1,46 @@
+---
+/**
+ * Why customers choose us, plus the equipment brands we specialise in.
+ * Edit both lists in `reasons` and `brands` in src/config/site.ts.
+ */
+import { site } from '../../config/site';
+import Icon from '../ui/Icon.astro';
+---
+<section aria-labelledby="why-title" class="py-section">
+  <div class="wrap grid gap-12 lg:grid-cols-12 lg:gap-16">
+    <div class="lg:col-span-5">
+      <h2 id="why-title" class="text-3xl tracking-display">Why customers choose us</h2>
+      <p class="mt-5 text-lg text-muted">
+        A local Belfast team that fits, guarantees and looks after every system ourselves.
+      </p>
+    </div>
+
+    <ul class="grid gap-x-10 gap-y-8 sm:grid-cols-2 lg:col-span-7">
+      {site.reasons.map((r) => (
+        <li class="flex gap-3">
+          <Icon name="check" class="mt-1.5 text-teal-ink" />
+          <div>
+            <h3 class="text-lg">{r.title}</h3>
+            <p class="mt-1 text-muted">
+              {r.text}
+            </p>
+          </div>
+        </li>
+      ))}
+    </ul>
+
+    <div class="lg:col-span-12">
+      <h3 class="sr-only">Brands we specialise in</h3>
+      <ul class="grid gap-px overflow-hidden rounded-md border border-line bg-line md:grid-cols-2">
+        {site.brands.map((b) => (
+          <li class="bg-white p-6 md:p-8">
+            <p class="text-2xl font-bold tracking-display text-navy">
+              {b.name} <span class="font-semibold text-teal-ink">{b.role}</span>
+            </p>
+            <p class="mt-1 text-muted">{b.text}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
+</section>

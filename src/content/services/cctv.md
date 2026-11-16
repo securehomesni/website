@@ -1,9 +1,9 @@
 ---
-title: CCTV installation
+title: CCTV systems
 shortTitle: CCTV
-summary: HD cameras placed to cover the doors, drive and garden you care about, viewable on your phone and set up to respect your neighbours' privacy.
-metaTitle: CCTV Installation for Homes in Belfast and Northern Ireland
-metaDescription: SSAIB-registered home CCTV installers. HD cameras, phone viewing and privacy-aware positioning. Book a free home security survey.
+summary: Hikvision HD cameras placed to cover the doors, drive and garden you care about, viewable on your phone and set up to respect your neighbours' privacy.
+metaTitle: CCTV Systems for Homes in Belfast and Northern Ireland
+metaDescription: Hikvision CCTV systems for homes, fitted by local SSAIB-registered specialists. HD cameras, phone viewing and privacy-aware positioning.
 order: 1
 featured: true
 placeholder: true
@@ -16,11 +16,11 @@ A good CCTV system is mostly about where the cameras go. We spend the survey wor
 ## What's included
 
 - A free survey and a fixed written quote
-- HD or 4K cameras chosen for each position, including low-light and night vision
+- Hikvision HD or 4K cameras chosen for each position, including low-light and night vision
 - A recorder stored somewhere safe inside the house
 - Phone and tablet viewing, set up with you before we leave
 - Tidy cable runs, with cables hidden or clipped neatly wherever the building allows
-- [Two-year] warranty on equipment and workmanship
+- 12-month guarantee on equipment and workmanship
 
 ## Cameras and your neighbours
 

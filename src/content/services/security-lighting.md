@@ -20,7 +20,7 @@ Good lighting puts people off and makes CCTV far more useful at night. We fit lo
 - Motion sensors set to the right range and sensitivity
 - Positioning that works with your CCTV cameras
 - Electrical work [certified to BS 7671]
-- [Two-year] warranty on equipment and workmanship
+- 12-month guarantee on equipment and workmanship
 
 ## Lighting and your neighbours
 

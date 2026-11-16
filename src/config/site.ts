@@ -77,12 +77,20 @@ export const site = {
     url: 'https://www.google.com/maps', // PLACEHOLDER: the Google Business Profile reviews link
   },
 
-  // "What makes us different". Keep each one concrete and provable.
-  promises: [
-    { title: 'Fixed written quotes', text: 'The price on the quote is the price you pay. No extras added on the day.' }, // PLACEHOLDER
-    { title: 'Local and family-run', text: 'The person who surveys your home is part of the team that installs it.' }, // PLACEHOLDER
-    { title: 'Help when you need it', text: 'Faults reported before noon are usually looked at the same working day.' }, // PLACEHOLDER
-    { title: 'Two-year warranty', text: 'On all equipment and workmanship, with a simple number to call.' }, // PLACEHOLDER
+  // "Why customers choose us" on the homepage. Keep each one concrete and provable.
+  reasons: [
+    { title: 'Emergency call-outs', text: 'If your alarm or cameras stop working, call us. We’ll get an engineer out as quickly as we can, including evenings and weekends.' }, // PLACEHOLDER: confirm hours and response times
+    { title: 'Free home surveys', text: 'An engineer visits, walks round with you and recommends only what your home needs. No charge and no obligation.' },
+    { title: '12-month guarantee', text: 'Every installation is guaranteed for 12 months, covering both equipment and workmanship.' },
+    { title: 'Homeowner focused', text: 'Systems designed around how your family lives, explained in plain English, with an app that’s simple to use.' },
+    { title: 'Competitive prices', text: 'Fixed written quotes with no hidden extras, and no monthly fees unless you choose monitoring or servicing.' },
+    { title: 'Excellent aftercare', text: 'Help on the phone when you need it, servicing plans, and the same local team looking after your system for years.' },
+  ],
+
+  // Equipment brands we specialise in. Text only: add official partner logos only with the manufacturer's permission.
+  brands: [
+    { name: 'Hikvision', role: 'CCTV specialists', text: 'HD and 4K cameras and recorders, with the Hik-Connect app on your phone.' },
+    { name: 'Pyronix', role: 'intruder alarm specialists', text: 'Wired and wireless alarms, with the HomeControl+ app to set and unset from anywhere.' },
   ],
 
   // Christmas effects in the homepage hero: falling snow and a Secure Home NI sleigh. It only runs between these dates (month-day),

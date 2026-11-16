@@ -1,0 +1,60 @@
+---
+/**
+ * The kinds of homes we protect, with what each one needs in Northern Ireland.
+ * Each line drawing is a simple outline of that type of home (decorative).
+ */
+const homes = [
+  {
+    title: 'Terraces and townhouses',
+    text: 'Common across Belfast and our towns. Rear yards and shared entries are often the weak spot, so we cover the back as well as the front without filming next door.',
+    icon: 'M2 22V12l7-6 7 6 7-6 7 6 7-6 7 6v10ZM16 12v10M30 12v10',
+  },
+  {
+    title: 'Semi-detached houses',
+    text: 'A shared wall and an open side path. We protect the side gate, back door and drive, with lights angled away from your neighbour’s windows.',
+    icon: 'M6 22V11l9-7 9 7 9-7 9 7v11ZM24 11v11',
+  },
+  {
+    title: 'Detached houses',
+    text: 'More doors, windows and garden to look after. We plan cameras and lighting so the whole outside is covered, including garages and sheds.',
+    icon: 'M9 22V11l15-8 15 8v11ZM21 22v-6h6v6',
+  },
+  {
+    title: 'Bungalows',
+    text: 'Every window is at ground level, so door and window sensors matter most. We keep the keypad and app simple for everyone in the house.',
+    icon: 'M3 22v-8L24 6l21 8v8ZM21 22v-5h6v5',
+  },
+  {
+    title: 'Apartments and flats',
+    text: 'We secure your own front door and the inside of your home, and check with your management company before anything goes on shared walls.',
+    icon: 'M15 22V2h18v20ZM19 6h3m4 0h3M19 11h3m4 0h3M19 16h3m4 0h3',
+  },
+  {
+    title: 'Rural homes and farmhouses',
+    text: 'Long lanes, yards and outbuildings, often with patchy broadband. We cover the lane and yard, and fit alarms that can signal over mobile networks.',
+    icon: 'M2 22v-9l9-7 9 7v9ZM24 22V10l11-6 11 6v12ZM31 22v-7h8v7',
+  },
+];
+---
+<section aria-labelledby="homes-title" class="border-t border-line py-section">
+  <div class="wrap">
+    <div class="grid gap-6 lg:grid-cols-12 lg:items-end">
+      <h2 id="homes-title" class="text-3xl tracking-display lg:col-span-6">Homes we protect</h2>
+      <p class="max-w-xl text-lg text-muted lg:col-span-6">
+        Every type of home in Northern Ireland has its own weak spots. We design each system around yours.
+      </p>
+    </div>
+
+    <ul class="mt-12 grid gap-x-10 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
+      {homes.map((home) => (
+        <li class="border-t border-navy/20 pt-5">
+          <svg viewBox="0 0 48 24" class="h-7 w-14 text-teal-ink" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linejoin="round" stroke-linecap="round">
+            <path d={home.icon} />
+          </svg>
+          <h3 class="mt-4 text-xl">{home.title}</h3>
+          <p class="mt-2 text-muted">{home.text}</p>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
