@@ -87,6 +87,15 @@ export const site = {
     { title: 'Two-year warranty', text: 'On all equipment and workmanship, with a simple number to call.' }, // PLACEHOLDER
   ],
 
+  // Snow falling in the homepage hero. It only runs between these dates (month-day),
+  // checked in the visitor's browser, so it switches itself on and off each year
+  // without a rebuild. Set show: false to turn it off completely.
+  snow: {
+    show: true,
+    from: '11-15',
+    until: '01-06',
+  },
+
   // Quote shown on the homepage. PLACEHOLDER: draft wording, to be approved by Aaron.
   director: {
     name: 'Aaron Ashton',

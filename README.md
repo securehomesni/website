@@ -98,6 +98,9 @@ Copy an existing Markdown file in the matching `src/content/` folder and change 
 ### Bundle offer
 `bundle` in `src/config/site.ts`: price, what's included and terms. Set `show: false` to hide the section.
 
+### Christmas snow
+The homepage hero shows gentle snowfall between the dates in `snow` in `src/config/site.ts` (15 November to 6 January by default). It turns itself on and off each year with no rebuild. It never runs for visitors who have reduced motion switched on, and has a pause button. Set `show: false` to remove it.
+
 ### FAQs
 `src/data/faqs.ts`. Answers can include links. They appear on the contact page.
 
