@@ -6,6 +6,28 @@ metaTitle: Security Lighting Installation for Homes in Belfast and Northern Irel
 metaDescription: LED security lights and floodlights with motion sensors, fitted by local SSAIB-registered engineers. Works alongside CCTV. Book a free survey.
 order: 3
 featured: true
+heroImage: ../../assets/work/work-lighting.jpg
+heroImageAlt: "Placeholder: an LED security light above a driveway at dusk"
+heroPoints:
+  - LED lights with motion sensors for your doors, drive and garden
+  - Set up to work with your CCTV for clearer night-time pictures
+  - Angled away from your neighbours' windows
+noun: security lights
+faqs:
+  - question: Will the lights come on for passing cars or cats?
+    answer: >-
+      We set each sensor's range and sensitivity on the day, so the light comes on when someone approaches
+      your home, not every time something moves on the street.
+  - question: How much electricity do LED security lights use?
+    answer: >-
+      Very little. LED lights only come on when they detect movement, and use a fraction of the power of old halogen lights.
+  - question: Can you replace my old halogen lights?
+    answer: >-
+      Yes. We can swap old or faulty lights for modern LED ones, often using the existing wiring.
+  - question: Do security lights help my cameras?
+    answer: >-
+      Yes. Good lighting means your cameras can record clearer, colour pictures at night.
+      See our <a href='/home-security/cctv/'>CCTV systems</a>.
 placeholder: true
 ---
 

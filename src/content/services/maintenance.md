@@ -5,6 +5,28 @@ summary: Repairs, upgrades and regular servicing for CCTV, alarms and security l
 metaTitle: Alarm and CCTV Repairs, Servicing and System Takeovers in Northern Ireland
 metaDescription: Repairs, servicing and takeovers of home alarms, CCTV and security lighting, including systems fitted by other companies. Local, SSAIB registered.
 order: 4
+heroImage: ../../assets/work/services-hero.jpg
+heroImageAlt: "Placeholder: one of our engineers servicing a security system"
+heroPoints:
+  - Repairs and servicing for CCTV, alarms and security lighting
+  - Upgrades and takeovers of systems fitted by other companies
+  - Emergency call-outs from a local Belfast team
+noun: systems
+faqs:
+  - question: Do you repair systems you didn't install?
+    answer: >-
+      Yes. We repair and service most CCTV, alarm and security lighting systems, whoever fitted them.
+  - question: What is a system takeover?
+    answer: >-
+      If your installer has stopped trading or you're unhappy with them, we can take over your system.
+      We check every part, set up new access for you and look after it from then on.
+  - question: What happens on a service visit?
+    answer: >-
+      We test every sensor, camera and light, replace batteries where needed and check recordings are being saved.
+      You get a written record of the visit.
+  - question: Can you do an emergency call-out?
+    answer: >-
+      Yes. If your alarm or cameras stop working, call us and we'll get an engineer out as quickly as we can.
 placeholder: true
 ---
 

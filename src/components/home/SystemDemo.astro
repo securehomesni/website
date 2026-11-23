@@ -7,11 +7,15 @@
  * screen readers), so the house illustration is decorative.
  * Wording of the activity messages is in the script at the bottom.
  */
+interface Props {
+  title?: string;
+}
+const { title = 'See how it all works together' } = Astro.props;
 ---
 <section aria-labelledby="demo-title" class="border-y border-line bg-white py-section">
   <div class="wrap">
     <div class="max-w-2xl">
-      <h2 id="demo-title" class="text-3xl tracking-display">See how it all works together</h2>
+      <h2 id="demo-title" class="text-3xl tracking-display">{title}</h2>
       <p class="mt-5 text-lg">
         Your cameras, alarm and lights work as one system, and you control it all from your phone.
         Pick day or night, then see what happens when someone comes to the house.

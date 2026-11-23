@@ -9,17 +9,23 @@ import { faqs, ICO_HOME_CCTV_URL } from '../../data/faqs';
 interface Props {
   items?: { question: string; answer: string }[];
   title?: string;
+  /** Replaces the default text beside the questions (which links to the ICO's CCTV guidance) */
+  intro?: string;
 }
-const { items = faqs, title = 'Common questions' } = Astro.props;
+const { items = faqs, title = 'Common questions', intro } = Astro.props;
 ---
 <section aria-labelledby="faq-title" class="py-section">
   <div class="wrap grid gap-10 lg:grid-cols-12">
     <div class="lg:col-span-4">
       <h2 id="faq-title" class="text-3xl tracking-display">{title}</h2>
-      <p class="mt-5 text-muted">
-        Including what the law says about CCTV at home. For the full picture, read the
-        <a class="link" href={ICO_HOME_CCTV_URL}>Information Commissioner’s guidance on home CCTV</a>.
-      </p>
+      {intro ? (
+        <p class="mt-5 text-muted">{intro}</p>
+      ) : (
+        <p class="mt-5 text-muted">
+          Including what the law says about CCTV at home. For the full picture, read the
+          <a class="link" href={ICO_HOME_CCTV_URL}>Information Commissioner’s guidance on home CCTV</a>.
+        </p>
+      )}
     </div>
     <div class="border-t border-line lg:col-span-8">
       {items.map((faq) => (

@@ -49,7 +49,7 @@ export const serviceFaqs: { question: string; answer: string }[] = [
     question: 'How much does a home security system cost?',
     // PLACEHOLDER: add typical price ranges if you're happy to publish them
     answer:
-      'It depends on the size of your home and what you want to protect. After a free survey we send a fixed written quote, so you know the full price before any work starts. Our <a href="/#bundle-title">CCTV, alarm and security light bundle</a> is a good starting point for many homes.',
+      'It depends on the size of your home and what you want to protect. After a free survey we send a fixed written quote, so you know the full price before any work starts. You can also <a href="/#bundle">build your own bundle</a> to see the discount for combining services.',
   },
   {
     question: 'Do I need CCTV, an alarm or both?',

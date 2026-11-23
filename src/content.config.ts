@@ -9,7 +9,7 @@ import { z } from 'astro/zod';
 
 const services = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/services' }),
-  schema: z.object({
+  schema: ({ image }) => z.object({
     title: z.string(), // H1 and link text, e.g. "CCTV installation"
     shortTitle: z.string(), // used in compact lists, e.g. "CCTV"
     summary: z.string(), // one or two sentences, shown on the homepage and service list
@@ -17,6 +17,14 @@ const services = defineCollection({
     metaDescription: z.string().max(160),
     order: z.number().default(99),
     featured: z.boolean().default(false), // featured services get a larger row on the homepage
+    // Service page hero: a photo (path relative to this file) and three short points
+    heroImage: image(),
+    heroImageAlt: z.string(),
+    heroPoints: z.array(z.string()).length(3),
+    // What the work is done on, for "CCTV systems we install, repair…" wording, e.g. "CCTV systems"
+    noun: z.string(),
+    // Questions shown on the service page. Answers can contain simple HTML links.
+    faqs: z.array(z.object({ question: z.string(), answer: z.string() })).default([]),
     placeholder: z.boolean().default(false), // true until real copy is supplied
   }),
 });

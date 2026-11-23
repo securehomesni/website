@@ -1,8 +1,18 @@
 ---
+/**
+ * Individual service pages: /home-security/cctv/ etc.
+ * Layout: hero, service overview, our services, system demo, locations, FAQs, final call to action.
+ * Content comes from src/content/services/*.md (overview text, hero photo and points, FAQs).
+ */
 import { getCollection, render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import PageHeader from '../../components/PageHeader.astro';
+import PageHero from '../../components/PageHero.astro';
 import CtaPanel from '../../components/CtaPanel.astro';
+import ServiceWork from '../../components/service/ServiceWork.astro';
+import SystemDemo from '../../components/home/SystemDemo.astro';
+import Areas from '../../components/home/Areas.astro';
+import Faq from '../../components/home/Faq.astro';
+import FinalCta from '../../components/home/FinalCta.astro';
 import { breadcrumbSchema, serviceSchema } from '../../lib/schema';
 import { servicesBase } from '../../config/site';
 
@@ -13,9 +23,9 @@ export async function getStaticPaths() {
 
 const { entry } = Astro.props;
 const { Content } = await render(entry);
-const others = (await getCollection('services'))
-  .filter((s) => s.id !== entry.id)
-  .sort((a, b) => a.data.order - b.data.order);
+
+// "CCTV systems" stays as is; "Intruder alarms" becomes "intruder alarms"
+const lowerFirst = (t: string) => t.replace(/^\S+/, (w) => (w === w.toUpperCase() ? w : w.toLowerCase()));
 
 const path = `${servicesBase}/${entry.id}/`;
 const crumbs = [
@@ -33,23 +43,40 @@ const siteUrl = Astro.site ?? new URL(Astro.url.origin);
     serviceSchema({ name: entry.data.title, description: entry.data.summary, path }, siteUrl),
   ]}
 >
-  <PageHeader title={entry.data.title} intro={entry.data.summary} breadcrumbs={crumbs} />
-  <div class="wrap grid gap-12 py-section lg:grid-cols-12">
-    <article class="prose-content lg:col-span-8">
-      <Content />
-    </article>
-    <div class="space-y-10 lg:col-span-4">
-      <div class="lg:sticky lg:top-[calc(var(--header-height)+2rem)]">
-        <CtaPanel />
-        <nav aria-labelledby="other-services" class="mt-10">
-          <h2 id="other-services" class="text-lg">Other services</h2>
-          <ul class="mt-3 space-y-1">
-            {others.map((s) => (
-              <li><a class="link inline-flex min-h-10 items-center" href={`${servicesBase}/${s.id}/`}>{s.data.title}</a></li>
-            ))}
-          </ul>
-        </nav>
+  <PageHero
+    title={`${entry.data.title} in Belfast and Northern Ireland`}
+    points={entry.data.heroPoints}
+    image={entry.data.heroImage}
+    imageAlt={entry.data.heroImageAlt}
+    breadcrumbs={crumbs}
+  />
+
+  <section aria-labelledby="overview-title" class="py-section">
+    <div class="wrap grid gap-12 lg:grid-cols-12">
+      <div class="lg:col-span-8">
+        <h2 id="overview-title" class="text-3xl tracking-display">About our {lowerFirst(entry.data.title)}</h2>
+        <p class="mt-5 max-w-2xl text-lg">{entry.data.summary}</p>
+        <div class="prose-content mt-8">
+          <Content />
+        </div>
+      </div>
+      <div class="lg:col-span-4">
+        <div class="lg:sticky lg:top-[calc(var(--header-height)+2rem)]">
+          <CtaPanel />
+        </div>
       </div>
     </div>
-  </div>
+  </section>
+
+  <ServiceWork entry={entry} />
+  <SystemDemo title="See it working with the rest of your system" />
+  <Areas title="Locations we serve" />
+  {entry.data.faqs.length > 0 && (
+    <Faq
+      title={`${entry.data.title}: common questions`}
+      items={entry.data.faqs}
+      intro="Can’t see your question? Call us or request a call back and we’ll be happy to help."
+    />
+  )}
+  <FinalCta />
 </BaseLayout>

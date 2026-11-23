@@ -1,0 +1,70 @@
+---
+/**
+ * Service page "Our services" section: the kinds of work we do for this service,
+ * then links to the other home security services.
+ */
+import { Image } from 'astro:assets';
+import { getCollection, type CollectionEntry } from 'astro:content';
+import { servicesBase } from '../../config/site';
+
+interface Props {
+  entry: CollectionEntry<'services'>;
+}
+const { entry } = Astro.props;
+const noun = entry.data.noun;
+
+const work = [
+  { title: 'New installations', text: `New ${noun}, designed around your home after a free survey.` },
+  { title: 'Repairs', text: `Faults found and fixed, on ${noun} we fitted and ones we didn’t.` },
+  { title: 'Upgrades', text: `Add to what you have, or replace older ${noun} with modern equipment.` },
+  { title: 'Servicing', text: `Regular checks that keep your ${noun} working and insurers happy.` },
+  { title: 'System takeovers', text: `We take over ${noun} fitted by other companies, including ones that have stopped trading.` },
+];
+
+const others = (await getCollection('services'))
+  .filter((s) => s.data.featured && s.id !== entry.id)
+  .sort((a, b) => a.data.order - b.data.order);
+---
+<section aria-labelledby="work-title" class="border-t border-line py-section">
+  <div class="wrap">
+    <div class="max-w-2xl">
+      <h2 id="work-title" class="text-3xl tracking-display">Our services</h2>
+      <p class="mt-5 text-lg">From a brand-new system to looking after one someone else fitted.</p>
+    </div>
+
+    <ul class="mt-10 grid gap-px overflow-hidden rounded-md border border-line bg-line sm:grid-cols-2 lg:grid-cols-5">
+      {work.map((w) => (
+        <li class="bg-white p-6 sm:last:col-span-2 lg:last:col-span-1">
+          <h3 class="text-lg">{w.title}</h3>
+          <p class="mt-1 text-sm text-muted">{w.text}</p>
+        </li>
+      ))}
+    </ul>
+
+    {others.length > 0 && (
+      <div class="mt-16">
+        <h3 class="text-xl">Other home security services</h3>
+        <ul class="mt-6 grid gap-8 md:grid-cols-2">
+          {others.map((s) => (
+            <li class="grid grid-cols-[7rem_1fr] items-start gap-5 sm:grid-cols-[10rem_1fr]">
+              <Image
+                src={s.data.heroImage}
+                alt=""
+                widths={[240, 400]}
+                sizes="10rem"
+                class="aspect-[4/3] w-full rounded-md object-cover"
+                loading="lazy"
+              />
+              <div>
+                <h4 class="text-lg font-bold text-navy">
+                  <a class="hover:text-teal-ink hover:underline" href={`${servicesBase}/${s.id}/`}>{s.data.title}</a>
+                </h4>
+                <p class="mt-1 text-sm text-muted">{s.data.summary}</p>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
+    )}
+  </div>
+</section>

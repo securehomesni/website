@@ -116,6 +116,8 @@ const interests = [
 </div>
 
 <script>
+  import { describeBundle } from '../../lib/bundle';
+
   // Turnstile adds window.turnstile once its script has loaded
   const resetTurnstile = () =>
     (window as unknown as { turnstile?: { reset: () => void } }).turnstile?.reset();
@@ -138,13 +140,20 @@ const interests = [
     // We show our own, clearer error messages instead of the browser's
     form.noValidate = true;
 
-    // Links such as /contact/?interest=Security+bundle tick that option for the visitor
-    const preselect = new URLSearchParams(location.search).get('interest');
-    if (preselect) {
-      form.querySelectorAll<HTMLInputElement>('input[name="interest"]').forEach((box) => {
-        if (box.value === preselect) box.checked = true;
-      });
-    }
+    // Links such as /contact/?interest=Security+bundle tick those options for the visitor,
+    // and the homepage bundle builder sends its choices, which pre-fill the message
+    const params = new URLSearchParams(location.search);
+    const wanted = params.getAll('interest');
+    form.querySelectorAll<HTMLInputElement>('input[name="interest"]').forEach((box) => {
+      if (wanted.includes(box.value)) box.checked = true;
+    });
+    const count = (key: string) => Math.max(0, Math.min(99, Math.round(Number(params.get(key)) || 0)));
+    const bundleText = describeBundle(
+      { cameras: count('cameras'), sensors: count('sensors'), lights: count('lights') },
+      (params.get('home') ?? '').slice(0, 60),
+    );
+    const message = form.querySelector<HTMLTextAreaElement>('#qf-message');
+    if (bundleText && message && !message.value) message.value = bundleText;
 
     /* ---- Load Turnstile only when it's needed ----------------------- */
     let turnstileLoaded = false;

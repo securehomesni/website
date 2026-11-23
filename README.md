@@ -93,8 +93,11 @@ Copy an existing Markdown file in the matching `src/content/` folder and change 
 - **Locations:** a town in `site.areas` links to its page automatically when the location file's `name` matches. Write genuinely local copy for each; thin, near-identical location pages can hurt rankings.
 - Remove `placeholder: true` once real copy is in.
 
-### Bundle offer
-`bundle` in `src/config/site.ts`: price, what's included and terms. Set `show: false` to hide the section.
+### Bundle builder
+The homepage "Build your security bundle" section lets customers choose how many cameras, alarm sensors and lights they need, and shows their bundle discount (no prices). Set the discount percentages, starting numbers and limits in `bundle` in `src/config/site.ts`; the rules that combine them are in `src/lib/bundle.ts`. The button sends their choices to the call-back form on the contact page, which pre-fills the message.
+
+### Service pages
+Each file in `src/content/services/` builds a page at `/home-security/<file-name>/` with: hero (photo, three points), overview (the Markdown text), our services, the system demo, locations, FAQs and the final call to action. Set the hero photo, its alt text, the three points and the FAQs in the file's frontmatter.
 
 ### Christmas effects
 The homepage hero shows gentle snowfall and a Secure Homes NI sleigh (drawn in `components/home/Christmas.astro`) between the dates in `christmas` in `src/config/site.ts` (15 November to 6 January by default). It turns itself on and off each year with no rebuild. It never runs for visitors who have reduced motion switched on, and has a pause button. Set `show: false` to remove it.

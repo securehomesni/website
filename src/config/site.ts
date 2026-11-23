@@ -110,18 +110,22 @@ export const site = {
       'Most people here don’t want their home to feel like a fortress. They want to see who’s at the door, know the house is fine while they’re away, and have a local number to ring if anything goes wrong. That’s what we build, from terraces in Belfast to bungalows in North Down: equipment that copes with Northern Ireland weather, fitted properly and looked after for years.',
   },
 
-  // Homepage bundle offer. Set `show: false` to hide the section.
+  // Homepage bundle builder. Customers choose what they need; the discount grows with
+  // how much they combine. No prices are shown: the final price is on the written quote.
+  // Set `show: false` to hide the section.
   bundle: {
     show: true,
-    name: 'Complete home security bundle',
-    price: '£x', // PLACEHOLDER: the bundle price, e.g. '£1,295'
-    priceNote: 'fully installed, including VAT', // PLACEHOLDER: confirm VAT and what the price covers
-    includes: [
-      { title: 'CCTV', text: '[2] HD cameras with night vision, a recorder and phone viewing' }, // PLACEHOLDER
-      { title: 'Intruder alarm', text: 'Wireless alarm with [3] sensors, a bell box and app control' }, // PLACEHOLDER
-      { title: 'Security light', text: '[1] LED floodlight with a motion sensor, positioned to light your doors or drive' }, // PLACEHOLDER
-    ],
-    terms: 'Typical three-bedroom home. Larger homes and extra equipment are quoted after your free survey.', // PLACEHOLDER
+    discounts: {
+      twoServices: 10, // % off when two of CCTV, alarm and lighting are combined. PLACEHOLDER
+      threeServices: 15, // % off when all three are combined. PLACEHOLDER
+      largeSystemBonus: 5, // extra % for a larger bundle... PLACEHOLDER
+      largeSystemFrom: 8, // ...of this many devices (cameras + sensors + lights) or more. PLACEHOLDER
+    },
+    // Starting values and limits for each choice
+    cameras: { start: 2, max: 16 },
+    sensors: { start: 4, max: 20 },
+    lights: { start: 1, max: 10 },
+    terms: 'Your discount is applied to the equipment and installation on your fixed written quote, after a free survey.', // PLACEHOLDER
   },
 
   social: {
