@@ -1,0 +1,45 @@
+---
+/**
+ * Home security services (parent page): /home-security/
+ * Hero, services, our process, locations we serve, FAQs, final call to action.
+ */
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/PageHero.astro';
+import Services from '../../components/home/Services.astro';
+import Process from '../../components/home/Process.astro';
+import Areas from '../../components/home/Areas.astro';
+import Faq from '../../components/home/Faq.astro';
+import FinalCta from '../../components/home/FinalCta.astro';
+import { servicesBase } from '../../config/site';
+import { serviceFaqs } from '../../data/faqs';
+import { breadcrumbSchema } from '../../lib/schema';
+import heroImage from '../../assets/work/services-hero.jpg';
+
+const crumbs = [
+  { name: 'Home', path: '/' },
+  { name: 'Home security', path: `${servicesBase}/` },
+];
+const siteUrl = Astro.site ?? new URL(Astro.url.origin);
+---
+<BaseLayout
+  title="Home Security Systems in Belfast and Northern Ireland"
+  description="CCTV, intruder alarms and security lighting for homes across Northern Ireland, installed, repaired and serviced by local SSAIB-registered engineers."
+  schema={[breadcrumbSchema(crumbs, siteUrl)]}
+>
+  <PageHero
+    title="Home security systems for Northern Ireland homes"
+    points={[
+      'CCTV, intruder alarms and security lighting, installed, repaired and serviced',
+      'Free home survey and a fixed written quote, with no obligation',
+      'Local, SSAIB-registered engineers based in Belfast',
+    ]}
+    image={heroImage}
+    imageAlt="Placeholder: one of our engineers fitting a security camera"
+    breadcrumbs={crumbs}
+  />
+  <Services />
+  <Process />
+  <Areas title="Locations we serve" />
+  <Faq title="Home security questions" items={serviceFaqs} />
+  <FinalCta />
+</BaseLayout>

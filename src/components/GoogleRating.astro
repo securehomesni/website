@@ -1,0 +1,45 @@
+---
+/**
+ * Google reviews rating, linking to the Google Business Profile reviews.
+ * Rating, count and link: `reviews` in src/config/site.ts. Never publish a figure you can't link to.
+ * Uses text rather than Google's logo, which needs Google's permission to use.
+ */
+import { site } from '../config/site';
+import Placeholder from './ui/Placeholder.astro';
+
+interface Props {
+  tone?: 'light' | 'dark';
+}
+const { tone = 'light' } = Astro.props;
+const dark = tone === 'dark';
+const rating = Number(site.reviews.rating);
+---
+<a
+  href={site.reviews.url}
+  class:list={[
+    'group inline-flex min-h-11 flex-wrap items-center gap-x-3 gap-y-1 rounded-sm',
+    dark ? 'text-paper' : 'text-ink',
+  ]}
+>
+  <span class="flex gap-0.5" aria-hidden="true">
+    {[1, 2, 3, 4, 5].map((n) => (
+      <svg viewBox="0 0 20 20" class="size-5" focusable="false">
+        <path
+          d="m10 1.5 2.6 5.3 5.9.9-4.3 4.1 1 5.8L10 14.9l-5.2 2.7 1-5.8L1.5 7.7l5.9-.9Z"
+          fill={rating >= n - 0.25 ? '#f6c945' : 'none'}
+          stroke="#f6c945"
+          stroke-width="1.4"
+          stroke-linejoin="round"
+        />
+      </svg>
+    ))}
+  </span>
+  <span class="font-semibold">
+    <Placeholder note="Real Google rating and count">
+      Rated {site.reviews.rating} out of 5 from {site.reviews.count} Google reviews
+    </Placeholder>
+  </span>
+  <span class:list={['text-sm underline underline-offset-4 group-hover:decoration-2', dark ? 'text-teal-soft' : 'text-teal-ink']}>
+    Read our reviews
+  </span>
+</a>

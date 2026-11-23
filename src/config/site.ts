@@ -136,8 +136,12 @@ export const site = {
   },
 } as const;
 
+// Where the services section lives: /home-security/ and /home-security/cctv/ etc.
+// Old /services/ addresses redirect here (see public/_redirects).
+export const servicesBase = '/home-security';
+
 export const nav = [
-  { label: 'Services', href: '/services/' },
+  { label: 'Services', href: `${servicesBase}/` },
   { label: 'Areas we cover', href: '/areas/' },
   { label: 'About us', href: '/about/' },
   { label: 'Contact', href: '/contact/' },

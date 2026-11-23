@@ -42,3 +42,41 @@ export const faqs: { question: string; answer: string }[] = [
       "Yes. There's no charge and no obligation. An engineer visits, looks at your home with you, and sends a fixed written quote afterwards.",
   },
 ];
+
+/** FAQs for the home security (services) page. */
+export const serviceFaqs: { question: string; answer: string }[] = [
+  {
+    question: 'How much does a home security system cost?',
+    // PLACEHOLDER: add typical price ranges if you're happy to publish them
+    answer:
+      'It depends on the size of your home and what you want to protect. After a free survey we send a fixed written quote, so you know the full price before any work starts. Our <a href="/#bundle-title">CCTV, alarm and security light bundle</a> is a good starting point for many homes.',
+  },
+  {
+    question: 'Do I need CCTV, an alarm or both?',
+    answer:
+      "CCTV lets you see what's happening and keeps a record. An alarm warns you and scares people off when someone tries to get in. Security lighting makes both work better at night. Many people choose all three, but we'll only recommend what your home needs.",
+  },
+  {
+    question: "Can you repair or service a system you didn't install?",
+    answer:
+      'Yes. We repair, upgrade and service most CCTV and alarm systems, and we can take over systems fitted by other companies, including ones that have stopped trading.',
+  },
+  {
+    question: 'Can I switch to you from Ring, Verisure or ADT?',
+    answer:
+      "Yes. Check your contract's end date and notice period, then request a call back. We'll survey your home, keep any equipment you own where we can, and time the installation so you're never left without protection.",
+  },
+  {
+    question: 'What brands do you install?',
+    answer:
+      'We specialise in Hikvision CCTV and Pyronix intruder alarms, both of which you can control from an app on your phone.',
+  },
+  {
+    question: 'What guarantee do I get?',
+    answer: 'Every installation comes with a 12-month guarantee covering equipment and workmanship.',
+  },
+  {
+    question: 'Is it legal to have CCTV on my house?',
+    answer: faqs[0].answer,
+  },
+];

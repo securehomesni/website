@@ -28,4 +28,4 @@ You can keep things simple with a bells-only system, get alerts on your phone, o
 
 ## Servicing
 
-Alarms should be serviced [once a year] to keep insurers happy and batteries fresh. See [maintenance and servicing](/services/maintenance/).
+Alarms should be serviced [once a year] to keep insurers happy and batteries fresh. See [maintenance and servicing](/home-security/maintenance/).

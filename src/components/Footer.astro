@@ -1,6 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
-import { site, nav, legalNav } from '../config/site';
+import { site, nav, legalNav, servicesBase } from '../config/site';
 import Logo from './Logo.astro';
 
 const services = (await getCollection('services')).sort((a, b) => a.data.order - b.data.order);
@@ -48,7 +48,7 @@ const year = new Date().getFullYear();
       <h2 class="text-base font-semibold text-paper">Services</h2>
       <ul class="mt-4 space-y-1 text-sm">
         {services.map((s) => (
-          <li><a class="inline-flex min-h-8 items-center text-paper/85 hover:text-white hover:underline" href={`/services/${s.id}/`}>{s.data.shortTitle}</a></li>
+          <li><a class="inline-flex min-h-8 items-center text-paper/85 hover:text-white hover:underline" href={`${servicesBase}/${s.id}/`}>{s.data.shortTitle}</a></li>
         ))}
       </ul>
     </nav>

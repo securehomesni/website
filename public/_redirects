@@ -1,0 +1,5 @@
+# Cloudflare Pages redirects: https://developers.cloudflare.com/pages/configuration/redirects/
+# The services section moved from /services/ to /home-security/ in November 2026.
+/services          /home-security/          301
+/services/         /home-security/          301
+/services/*        /home-security/:splat    301

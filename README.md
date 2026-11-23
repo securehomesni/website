@@ -71,7 +71,7 @@ With `DEV_MODE=true` and no Resend key, submissions are printed to the terminal 
 | URL | Source |
 | --- | --- |
 | `/` | `pages/index.astro` |
-| `/services/`, `/services/cctv/` … | `pages/services/` + `content/services/*.md` |
+| `/home-security/`, `/home-security/cctv/` … | `pages/home-security/` + `content/services/*.md` (old `/services/` links redirect via `public/_redirects`) |
 | `/areas/`, `/areas/belfast/` … | `pages/areas/` + `content/locations/*.md` |
 | `/about/`, `/contact/`, `/privacy-policy/`, `/accessibility-statement/` | `pages/*.astro` |
 | `/thank-you/` (noindex), `/404` | Form confirmation without JavaScript; not-found page |
@@ -87,7 +87,7 @@ Everything in **`src/config/site.ts`**: name, phone, email, address, hours, area
 **Name, address and phone must match your Google Business Profile exactly.**
 
 ### Adding a service or area
-Copy an existing Markdown file in the matching `src/content/` folder and change the frontmatter and text. The file name becomes the URL (`cctv-for-flats.md` → `/services/cctv-for-flats/`). Required fields are defined and validated in `src/content.config.ts`; the build fails with a clear message if one is missing.
+Copy an existing Markdown file in the matching `src/content/` folder and change the frontmatter and text. The file name becomes the URL (`cctv-for-flats.md` → `/home-security/cctv-for-flats/`; the `/home-security` part is `servicesBase` in `src/config/site.ts`). Required fields are defined and validated in `src/content.config.ts`; the build fails with a clear message if one is missing.
 
 - **Services:** `featured: true` gives a service a full row on the homepage. `order` sets the order everywhere.
 - **Locations:** a town in `site.areas` links to its page automatically when the location file's `name` matches. Write genuinely local copy for each; thin, near-identical location pages can hurt rankings.

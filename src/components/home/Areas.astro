@@ -8,13 +8,18 @@ import { site, ctaLabel, ctaHref } from '../../config/site';
 import Icon from '../ui/Icon.astro';
 import Placeholder from '../ui/Placeholder.astro';
 
+interface Props {
+  title?: string;
+}
+const { title = 'Areas we cover' } = Astro.props;
+
 const locations = await getCollection('locations');
 const pageFor = (town: string) => locations.find((l) => l.data.name.toLowerCase() === town.toLowerCase());
 ---
 <section aria-labelledby="areas-title" class="border-y border-line bg-white py-section">
   <div class="wrap grid gap-12 lg:grid-cols-12">
     <div class="lg:col-span-5">
-      <h2 id="areas-title" class="text-3xl tracking-display">Areas we cover</h2>
+      <h2 id="areas-title" class="text-3xl tracking-display">{title}</h2>
       <p class="mt-5 text-lg">
         We cover homes across <Placeholder note="Service area">{site.areaSummary}</Placeholder>, from our base in {site.address.locality}.
       </p>
