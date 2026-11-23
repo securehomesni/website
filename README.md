@@ -97,7 +97,7 @@ Copy an existing Markdown file in the matching `src/content/` folder and change 
 The homepage "Build your security bundle" section lets customers choose how many cameras, alarm sensors and lights they need, and shows their bundle discount (no prices). Set the discount percentages, starting numbers and limits in `bundle` in `src/config/site.ts`; the rules that combine them are in `src/lib/bundle.ts`. The button sends their choices to the call-back form on the contact page, which pre-fills the message.
 
 ### Service pages
-Each file in `src/content/services/` builds a page at `/home-security/<file-name>/` with: hero (photo, three points), overview (the Markdown text), our services, the system demo, locations, FAQs and the final call to action. Set the hero photo, its alt text, the three points and the FAQs in the file's frontmatter.
+Each file in `src/content/services/` builds a page at `/home-security/<file-name>/` with: hero (photo, three points), what's included (key facts, included items and a short note), our services, the system demo, locations, FAQs and the final call to action. Everything is set in the file's frontmatter: `heroImage`, `heroImageAlt`, `heroPoints`, `overview` (`facts`, `included`, `note`) and `faqs`.
 
 ### Christmas effects
 The homepage hero shows gentle snowfall and a Secure Homes NI sleigh (drawn in `components/home/Christmas.astro`) between the dates in `christmas` in `src/config/site.ts` (15 November to 6 January by default). It turns itself on and off each year with no rebuild. It never runs for visitors who have reduced motion switched on, and has a pause button. Set `show: false` to remove it.

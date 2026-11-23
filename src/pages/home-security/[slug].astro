@@ -2,12 +2,12 @@
 /**
  * Individual service pages: /home-security/cctv/ etc.
  * Layout: hero, service overview, our services, system demo, locations, FAQs, final call to action.
- * Content comes from src/content/services/*.md (overview text, hero photo and points, FAQs).
+ * Content comes from the frontmatter of src/content/services/*.md (hero, overview, FAQs).
  */
-import { getCollection, render } from 'astro:content';
+import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageHero from '../../components/PageHero.astro';
-import CtaPanel from '../../components/CtaPanel.astro';
+import ServiceOverview from '../../components/service/ServiceOverview.astro';
 import ServiceWork from '../../components/service/ServiceWork.astro';
 import SystemDemo from '../../components/home/SystemDemo.astro';
 import Areas from '../../components/home/Areas.astro';
@@ -22,10 +22,7 @@ export async function getStaticPaths() {
 }
 
 const { entry } = Astro.props;
-const { Content } = await render(entry);
 
-// "CCTV systems" stays as is; "Intruder alarms" becomes "intruder alarms"
-const lowerFirst = (t: string) => t.replace(/^\S+/, (w) => (w === w.toUpperCase() ? w : w.toLowerCase()));
 
 const path = `${servicesBase}/${entry.id}/`;
 const crumbs = [
@@ -51,22 +48,7 @@ const siteUrl = Astro.site ?? new URL(Astro.url.origin);
     breadcrumbs={crumbs}
   />
 
-  <section aria-labelledby="overview-title" class="py-section">
-    <div class="wrap grid gap-12 lg:grid-cols-12">
-      <div class="lg:col-span-8">
-        <h2 id="overview-title" class="text-3xl tracking-display">About our {lowerFirst(entry.data.title)}</h2>
-        <p class="mt-5 max-w-2xl text-lg">{entry.data.summary}</p>
-        <div class="prose-content mt-8">
-          <Content />
-        </div>
-      </div>
-      <div class="lg:col-span-4">
-        <div class="lg:sticky lg:top-[calc(var(--header-height)+2rem)]">
-          <CtaPanel />
-        </div>
-      </div>
-    </div>
-  </section>
+  <ServiceOverview entry={entry} />
 
   <ServiceWork entry={entry} />
   <SystemDemo title="See it working with the rest of your system" />

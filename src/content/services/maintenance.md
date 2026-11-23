@@ -27,23 +27,23 @@ faqs:
   - question: Can you do an emergency call-out?
     answer: >-
       Yes. If your alarm or cameras stop working, call us and we'll get an engineer out as quickly as we can.
+overview:
+  facts:
+    - { label: Covers, value: "CCTV, alarms and lighting" }
+    - { label: Other installers’ systems, value: Yes }
+    - { label: Emergency call-outs, value: Yes }
+    - { label: After each visit, value: A written report }
+  included:
+    - { title: Fault finding and repairs, text: "False alarms, offline cameras and lights that won’t switch off." }
+    - { title: Annual service visits, text: "Every sensor, camera and light tested, to keep insurers happy." }
+    - { title: Batteries replaced, text: "Before they run flat and cause faults or false alarms." }
+    - { title: Recordings checked, text: "We make sure your CCTV is actually saving footage." }
+    - { title: Upgrades, text: "Extra cameras or sensors, or a move to app control." }
+    - { title: System takeovers, text: "We take over systems from installers who’ve stopped trading or that you’re unhappy with." }
+  note:
+    title: Taking over your system
+    text: "We visit, check every part and tell you honestly what works, what needs replacing and what it will cost. Where we can, we keep your existing equipment rather than starting again."
 placeholder: true
 ---
 
-<!-- PLACEHOLDER: confirm contract options and whether you take over other installers' systems. -->
-
-Regular servicing keeps your system reliable and helps avoid false alarms. A service visit includes testing every sensor and camera, replacing batteries where needed, and checking recordings are being saved.
-
-## Servicing contracts
-
-- [Annual service visit]
-- [Priority call-outs]
-- [Discounted parts and labour]
-
-## System takeovers
-
-If your system was fitted by another company, perhaps one that has stopped trading or that you're no longer happy with, we can take it over. We visit, check every part of the system, and tell you honestly what works, what needs replacing and what it will cost. Where we can, we keep your existing equipment rather than starting again.
-
-- [Full system check and report]
-- [New engineer codes and app access set up for you]
-- [Added to a servicing plan if you want one]
+<!-- The page is built from the frontmatter above. PLACEHOLDER: check every fact, especially anything in [brackets]. -->

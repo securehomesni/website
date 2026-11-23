@@ -23,6 +23,13 @@ const services = defineCollection({
     heroPoints: z.array(z.string()).length(3),
     // What the work is done on, for "CCTV systems we install, repair…" wording, e.g. "CCTV systems"
     noun: z.string(),
+    // Service page overview: key facts, what's included, and a short "good to know" note.
+    // The note text can contain simple HTML links.
+    overview: z.object({
+      facts: z.array(z.object({ label: z.string(), value: z.string() })).min(2).max(4),
+      included: z.array(z.object({ title: z.string(), text: z.string() })).min(3).max(9),
+      note: z.object({ title: z.string(), text: z.string() }).optional(),
+    }),
     // Questions shown on the service page. Answers can contain simple HTML links.
     faqs: z.array(z.object({ question: z.string(), answer: z.string() })).default([]),
     placeholder: z.boolean().default(false), // true until real copy is supplied

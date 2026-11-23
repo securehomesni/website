@@ -1,0 +1,58 @@
+---
+/**
+ * Service page overview: summary, key facts, what's included, a "good to know" note
+ * and the call to action. Content comes from `overview` in the service's Markdown frontmatter.
+ */
+import type { CollectionEntry } from 'astro:content';
+import CtaPanel from '../CtaPanel.astro';
+import Icon from '../ui/Icon.astro';
+
+interface Props {
+  entry: CollectionEntry<'services'>;
+}
+const { entry } = Astro.props;
+const { summary, overview } = entry.data;
+---
+<section aria-labelledby="overview-title" class="py-section">
+  <div class="wrap">
+    <div class="grid gap-6 lg:grid-cols-12 lg:items-end">
+      <h2 id="overview-title" class="text-3xl tracking-display lg:col-span-5">What’s included</h2>
+      <p class="max-w-2xl text-lg text-muted lg:col-span-7">{summary}</p>
+    </div>
+
+    <dl class="mt-10 grid grid-cols-2 gap-px overflow-hidden rounded-md border border-line bg-line lg:grid-cols-4">
+      {overview.facts.map((f) => (
+        <div class="bg-white px-5 py-4">
+          <dt class="text-sm text-muted">{f.label}</dt>
+          <dd class="mt-1 text-lg font-semibold text-navy">{f.value}</dd>
+        </div>
+      ))}
+    </dl>
+
+    <ul class="mt-12 grid gap-x-10 gap-y-8 sm:grid-cols-2 lg:grid-cols-3">
+      {overview.included.map((item) => (
+        <li class="flex gap-3">
+          <span class="mt-0.5 grid size-7 shrink-0 place-items-center rounded-sm bg-mint text-teal-ink" aria-hidden="true">
+            <Icon name="check" class="size-4" />
+          </span>
+          <div>
+            <h3 class="text-lg">{item.title}</h3>
+            <p class="mt-1 text-muted">{item.text}</p>
+          </div>
+        </li>
+      ))}
+    </ul>
+
+    <div class="mt-14 grid gap-8 lg:grid-cols-12 lg:items-start">
+      {overview.note && (
+        <aside aria-labelledby="note-title" class="rounded-md border border-line border-l-4 border-l-teal bg-white p-6 md:p-8 lg:col-span-7">
+          <h3 id="note-title" class="text-xl">{overview.note.title}</h3>
+          <p class="prose-content mt-3" set:html={overview.note.text} />
+        </aside>
+      )}
+      <div class:list={[overview.note ? 'lg:col-span-5' : 'lg:col-span-6']}>
+        <CtaPanel />
+      </div>
+    </div>
+  </div>
+</section>

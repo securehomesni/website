@@ -34,26 +34,23 @@ faqs:
       Yes. If your cameras only record your own property, data protection law doesn't apply to the footage.
       If they capture anything beyond your boundary, it does. Read the
       <a href='https://ico.org.uk/your-data-matters/domestic-cctv-systems-guidance-for-people-using-cctv/'>Information Commissioner's guidance on home CCTV</a>.
+overview:
+  facts:
+    - { label: Cameras, value: Hikvision HD and 4K }
+    - { label: Phone app, value: Hik-Connect }
+    - { label: Typical fitting, value: "[One day]" }
+    - { label: Guarantee, value: 12 months }
+  included:
+    - { title: Cameras chosen for each spot, text: "Wide-angle, zoom or low-light cameras, all with night vision." }
+    - { title: A recorder in your home, text: "Footage is saved on site, so there’s no monthly fee for recordings." }
+    - { title: Viewing on your phone, text: "Watch live, play back and save clips from anywhere." }
+    - { title: Privacy masking, text: "Blocks out areas you shouldn’t record, like a neighbour’s windows." }
+    - { title: Tidy cabling, text: "Cables hidden or neatly clipped wherever the building allows." }
+    - { title: Set up with you, text: "We check every picture at night and show you the app before we leave." }
+  note:
+    title: Cameras and your neighbours
+    text: "If a camera records beyond your boundary, data protection law applies to that footage. We position cameras to keep recording to your own property where we can. <a href='https://ico.org.uk/your-data-matters/domestic-cctv-systems-guidance-for-people-using-cctv/'>Read the ICO’s guidance on home CCTV</a>."
 placeholder: true
 ---
 
-<!-- PLACEHOLDER: replace with real copy. Keep claims specific and provable. -->
-
-A good CCTV system is mostly about where the cameras go. We spend the survey working out what you actually want to see, then position each camera so it captures faces and number plates clearly without filming the street or next door more than it needs to.
-
-## What's included
-
-- A free survey and a fixed written quote
-- Hikvision HD or 4K cameras chosen for each position, including low-light and night vision
-- A recorder stored somewhere safe inside the house
-- Phone and tablet viewing, set up with you before we leave
-- Tidy cable runs, with cables hidden or clipped neatly wherever the building allows
-- 12-month guarantee on equipment and workmanship
-
-## Cameras and your neighbours
-
-If a camera captures anything beyond your property boundary, UK data protection law applies to that footage. We use careful positioning and privacy masking to keep recording to your own property where we can, and we explain what that means for you in plain English. Read the [Information Commissioner's guidance on home CCTV](https://ico.org.uk/your-data-matters/domestic-cctv-systems-guidance-for-people-using-cctv/).
-
-## Typical installation
-
-Most homes take [one day]. We test every camera, check the picture at night, and walk you through the app and how to save a clip if you ever need one.
+<!-- The page is built from the frontmatter above. PLACEHOLDER: check every fact, especially anything in [brackets]. -->

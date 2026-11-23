@@ -28,26 +28,23 @@ faqs:
     answer: >-
       Yes. Good lighting means your cameras can record clearer, colour pictures at night.
       See our <a href='/home-security/cctv/'>CCTV systems</a>.
+overview:
+  facts:
+    - { label: Lights, value: LED with motion sensors }
+    - { label: Works with, value: Your CCTV }
+    - { label: Old halogen lights, value: Replaced with LED }
+    - { label: Guarantee, value: 12 months }
+  included:
+    - { title: Floodlights and wall lights, text: "Chosen for each spot: doors, drive, garden or yard." }
+    - { title: Sensors set on the day, text: "The right range and sensitivity, so passing cars and cats don’t trip them." }
+    - { title: Placed for your cameras, text: "Lighting that helps your cameras record clearer pictures at night." }
+    - { title: Low running costs, text: "LED lights use very little power and only come on when needed." }
+    - { title: Certified electrical work, text: "Wiring done safely and [certified to BS 7671]." }
+    - { title: Repairs and upgrades, text: "Faulty lights fixed, and old halogen lights swapped for LED." }
+  note:
+    title: Lighting and your neighbours
+    text: "Bright lights shining into a neighbour’s home can cause complaints. We angle each light down onto your own property and choose the right brightness for the space."
 placeholder: true
 ---
 
-<!-- PLACEHOLDER: replace with real copy. Confirm who carries out the electrical work and their certification. -->
-
-Good lighting puts people off and makes CCTV far more useful at night. We fit low-energy LED lights where they do the most good, set the sensors so they don't trip for passing cars or cats, and angle them so they don't shine into your neighbours' windows.
-
-## What's included
-
-- A free survey and a fixed written quote
-- LED floodlights, wall lights or dusk-to-dawn lights chosen for each spot
-- Motion sensors set to the right range and sensitivity
-- Positioning that works with your CCTV cameras
-- Electrical work [certified to BS 7671]
-- 12-month guarantee on equipment and workmanship
-
-## Lighting and your neighbours
-
-Bright lights pointing at a neighbour's house can cause complaints. We aim each light down onto your own property and choose the right brightness for the space.
-
-## Repairs and upgrades
-
-Already have security lights that stay on, won't come on, or have stopped working? We can repair or replace them, and upgrade old halogen lights to LED.
+<!-- The page is built from the frontmatter above. PLACEHOLDER: check every fact, especially anything in [brackets]. -->

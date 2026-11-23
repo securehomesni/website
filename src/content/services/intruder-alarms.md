@@ -32,26 +32,23 @@ faqs:
     answer: >-
       Usually, yes. We'll check your system, tell you honestly what works and what needs replacing,
       and keep your existing equipment where we can.
+overview:
+  facts:
+    - { label: Alarm system, value: Pyronix }
+    - { label: Phone app, value: HomeControl+ }
+    - { label: Type, value: Wired or wireless }
+    - { label: Guarantee, value: 12 months }
+  included:
+    - { title: Door and window sensors, text: "On the entry points that matter, planned on your survey." }
+    - { title: Pet-tolerant motion sensors, text: "Positioned around where your pets go, so they don’t set it off." }
+    - { title: External bell box, text: "A visible deterrent that sounds and flashes if the alarm goes off." }
+    - { title: App control and alerts, text: "Set, unset and get alerts on your phone from anywhere." }
+    - { title: Installed to recognised standards, text: "Fitted by SSAIB-registered engineers to [PD 6662 and BS EN 50131]." }
+    - { title: Easy to use keypad, text: "Simple for everyone in the house, with a code for each person." }
+  note:
+    title: Monitoring options
+    text: "Keep it simple with a bells-only alarm, get alerts on your phone, or [add professional monitoring]. We’ll explain what each option costs and does before you decide."
 placeholder: true
 ---
 
-<!-- PLACEHOLDER: replace with real copy. Confirm the standards you install to with your SSAIB scope. -->
-
-An alarm should fit the way you live. On the survey we look at how you move around the house, where pets go, and which doors you use at night, then design a system that's simple to set and unset.
-
-## What's included
-
-- A free survey and a fixed written quote
-- Pyronix wired or wireless systems, depending on your home and whether you're decorating
-- Pet-tolerant sensors where needed
-- An external bell box and an app to set, unset and check the alarm
-- Installation to [PD 6662 and BS EN 50131] by SSAIB-registered engineers
-- 12-month guarantee on equipment and workmanship
-
-## Monitoring options
-
-You can keep things simple with a bells-only system, get alerts on your phone, or [add professional monitoring]. We'll explain the cost and what each option does before you decide.
-
-## Servicing
-
-Alarms should be serviced [once a year] to keep insurers happy and batteries fresh. See [maintenance and servicing](/home-security/maintenance/).
+<!-- The page is built from the frontmatter above. PLACEHOLDER: check every fact, especially anything in [brackets]. -->
